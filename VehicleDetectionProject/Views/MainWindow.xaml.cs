@@ -27,5 +27,17 @@ namespace VehicleDetectionProject
         {
             InitializeComponent();
         }
+
+        private void btnOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            btnOpenMenu.Visibility = Visibility.Collapsed;
+            btnCloseMenu.Visibility = Visibility.Visible;
+        }
+
+        private void btnCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            btnOpenMenu.Visibility = Visibility.Visible;
+            btnCloseMenu.Visibility = Visibility.Collapsed;
+        }
     }
 }

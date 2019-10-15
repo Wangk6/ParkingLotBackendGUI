@@ -6,37 +6,66 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Background="#222831"
         xmlns:local="clr-namespace:VehicleDetectionProject"
-        mc:Ignorable="d" Height="800" Width="1350" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" Height="860" Width="1350" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftGridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftGridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="571*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Width="200" HorizontalAlignment="Left" Background="#FF222427">
+        <Grid x:Name="LeftGridMenu" Width="200" HorizontalAlignment="Left" Background="#FF222427">
             <StackPanel>
-                <Grid Height="50">
-                    <Button x:Name="btnCloseMenu" Width="50" Height="50" Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right">
-                        <materialDesign:PackIcon Height="25" Width="25" Kind="ArrowLeft" Foreground="#00adb5" Visibility="Collapsed"></materialDesign:PackIcon>
+                <Grid Height="60">
+                    <Button x:Name="btnCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btnCloseMenu_Click">
+                        <materialDesign:PackIcon Height="50" Width="40" Kind="ArrowLeft" Foreground="#00adb5"></materialDesign:PackIcon>
                     </Button>
-                    <Button x:Name="btnOpenMenu" Width="40" Height="50" Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Button x:Name="btnOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnOpenMenu_Click">
                         <materialDesign:PackIcon Height="50" Width="40" Kind="Menu" Foreground="#00adb5" ></materialDesign:PackIcon>
                     </Button>
                 </Grid>
-                <ListView Background="#393e46" Foreground="Aquamarine" BorderBrush="Aqua">
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#393e46" Foreground="Aquamarine" BorderBrush="Aqua">
                     <ListViewItem Height="100">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Television" Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Television" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="100">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="MessageAlert" Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
-                            <TextBlock Text="Alerts" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
+                            <materialDesign:PackIcon Kind="ControlPoint" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
+                            <TextBlock Text="Controls" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="100">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings" Width="30" Height="30" Foreground="White"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Settings" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Text="Configure" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
                         </StackPanel>
                     </ListViewItem>
@@ -44,7 +73,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Width="284" HorizontalAlignment="Left" Margin="1014,196,0,0" Height="225" VerticalAlignment="Top">
+        <Grid Width="284" HorizontalAlignment="Left" Margin="829,248,0,0" Height="224" VerticalAlignment="Top" Grid.Column="1">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
@@ -69,7 +98,7 @@
             </Border>
         </Grid>
 
-        <Grid Width="345" HorizontalAlignment="Left" Margin="238,466,0,0" Height="290" VerticalAlignment="Top" >
+        <Grid Width="344" HorizontalAlignment="Left" Margin="31,511,0,0" Height="290" VerticalAlignment="Top" Grid.Column="1" >
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
@@ -99,32 +128,30 @@
                 </StackPanel>
             </Border>
         </Grid>
-        <Rectangle Fill="#393e46" HorizontalAlignment="Left" Height="418" Margin="238,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="728"/>
-        <MediaElement HorizontalAlignment="Left" Height="418" Margin="238,26,0,0" VerticalAlignment="Top" Width="728"/>
-        <Grid Width="340" HorizontalAlignment="Left" Margin="626,466,0,0" Height="225" VerticalAlignment="Top" >
+        <Rectangle Fill="#393e46" HorizontalAlignment="Left" Height="450" Margin="31,26,0,0" Stroke="Black" VerticalAlignment="Top" Width="780" Grid.Column="1"/>
+        <materialDesign:PackIcon Kind="VideocamOff" Width="36" Height="34" Margin="405,234,0,0"  Foreground="#FFD1D1D1" Grid.Column="1"/>
+        <MediaElement HorizontalAlignment="Left" Height="450" Margin="31,26,0,0" VerticalAlignment="Top" Width="780" Grid.Column="1"/>
+
+        <Grid Width="320" HorizontalAlignment="Left" Margin="439,512,0,0" Height="174" VerticalAlignment="Top" Grid.Column="1" >
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Parking" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Height="35" Width="340"/>
+                        <TextBlock Text="Parking" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Height="35" Width="320"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Car" Width="35" Height="35" Margin="10 10"  Foreground="#FF2085FF"/>
                         <TextBlock Text="Parked" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCurrentParked" Text="3" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="147"/>
+                        <TextBlock x:Name="txtParkingLotCurrentParked" Text="3" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="115"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="About" Width="35" Height="35" Margin="10 10"  Foreground="#FFFFC7C7"/>
                         <TextBlock Text="Available" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCurrentAvailable" Text="12" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="25" Margin="65,12,0,11" Width="117"/>
+                        <TextBlock x:Name="txtParkingLotCurrentAvailable" Text="12" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="25" Margin="65,12,0,11" Width="88"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="60">
-                        <materialDesign:PackIcon Kind="TicketUser" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF85DE"/>
-                        <TextBlock Text="Category" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCategory1" Text="Student" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="25" Margin="55,14,0,13" Width="118"/>
-                    </StackPanel>
-
                 </StackPanel>
             </Border>
         </Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="829,61,0,0" VerticalAlignment="Top" Width="284" Height="52" Grid.Column="1"/>
+        <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Margin="829,26,22,768" Grid.Column="1"/>
     </Grid>
 </Window>
