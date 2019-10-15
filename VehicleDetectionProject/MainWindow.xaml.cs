@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VehicleDetectionProject.ViewModel;
 
 namespace VehicleDetectionProject
 {
@@ -38,6 +39,27 @@ namespace VehicleDetectionProject
         {
             btnOpenMenu.Visibility = Visibility.Visible;
             btnCloseMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void DashboardView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new DashboardViewModel();
+        }
+        
+        private void ControlView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ControlsViewModel();
+        }
+
+        private void ConfigureView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ConfigureViewModel();
+
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
