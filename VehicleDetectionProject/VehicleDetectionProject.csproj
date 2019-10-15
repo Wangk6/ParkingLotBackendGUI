@@ -137,5 +137,8 @@
     <Resource Include="Assets\greenCircleIcon.png" />
     <Resource Include="Assets\redCircleIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\fdaleMap.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

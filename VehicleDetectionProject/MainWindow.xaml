@@ -44,7 +44,6 @@
         </EventTrigger>
     </Window.Triggers>
 
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
@@ -86,7 +85,10 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"/>
+        <Image Source="Assets/fdaleMap.png" Grid.Column="1" Margin="10,0,0,-27"></Image>
+
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" Content="{Binding}"/>
+        
     </Grid>
     
 </Window>
