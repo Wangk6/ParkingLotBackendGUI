@@ -9,29 +9,37 @@
         xmlns:views="clr-namespace:VehicleDetectionProject.Views"
         Background="#222831"
         Title="Vehicle Detection Console"
-        mc:Ignorable="d" Height="860" Width="1350" WindowStartupLocation="CenterScreen" Icon="Assets/targetIcon.png">
+        mc:Ignorable="d" Height="860" Width="1400" WindowStartupLocation="CenterScreen" Icon="Assets/targetIcon.png">
     <Window.Resources>
         <DataTemplate x:Name="dashboardViewTemplate" DataType="{x:Type viewmodels:DashboardViewModel}">
             <views:DashboardView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="controlViewTemplate" DataType="{x:Type viewmodels:ControlsViewModel}">
-            <views:ControlsView DataContext="{Binding}"/>
-        </DataTemplate>
-        <DataTemplate x:Name="configureViewTemplate" DataType="{x:Type viewmodels:ConfigureViewModel}">
+        <DataTemplate x:Name="controlViewTemplate" DataType="{x:Type viewmodels:ConfigureViewModel}">
             <views:ConfigureView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="configureViewTemplate" DataType="{x:Type viewmodels:SourceViewModel}">
+            <views:SourceView DataContext="{Binding}"/>
         </DataTemplate>
         
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftGridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="MainDisplay">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-140, 0,0,0" />
+                <SplineThicknessKeyFrame KeyTime="00:00:0.5" Value="0,0,0,0" />
+            </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftGridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="MainDisplay">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0, 0,0,0" />
+                <SplineThicknessKeyFrame KeyTime="00:00:0.5" Value="-140,0,0,0" />
+            </ThicknessAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
 
@@ -49,16 +57,13 @@
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="571*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid x:Name="LeftGridMenu" Width="60" HorizontalAlignment="Left" Background="#FF222427">
+        <Grid x:Name="LeftGridMenu" Width="200" HorizontalAlignment="Left" Background="#FF222427">
             <StackPanel>
                 <Grid Height="60">
-                    <Button x:Name="btnCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btnCloseMenu_Click">
+                    <Button x:Name="btnCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnCloseMenu_Click">
                         <materialDesign:PackIcon Height="50" Width="40" Kind="ArrowLeft" Foreground="#00adb5"></materialDesign:PackIcon>
                     </Button>
-                    <Button x:Name="btnOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnOpenMenu_Click">
+                    <Button x:Name="btnOpenMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btnOpenMenu_Click">
                         <materialDesign:PackIcon Height="50" Width="40" Kind="Menu" Foreground="#00adb5" ></materialDesign:PackIcon>
                     </Button>
                 </Grid>
@@ -70,24 +75,24 @@
                             <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="100" Selected="ControlView_Clicked">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ControlPoint" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
-                            <TextBlock Text="Controls" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
-                        </StackPanel>
-                    </ListViewItem>
                     <ListViewItem Height="100" Selected="ConfigureView_Clicked">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="ControlPoint" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Text="Configure" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="100" Selected="SourceView_Clicked">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
+                            <TextBlock Text="Source" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
         </Grid>
-        <Image Source="Assets/fdaleMap.png" Grid.Column="1" Margin="10,0,0,-27"></Image>
+        <Image Source="Assets/fdaleMap.png" Grid.Column="1" Margin="10,130,180,-27"></Image>
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" Content="{Binding}"/>
+        <ContentControl x:Name="MainDisplay" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" Content="{Binding}"/>
         
     </Grid>
     

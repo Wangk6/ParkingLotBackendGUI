@@ -62,11 +62,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\ConfigureView.xaml">
+    <Page Include="Views\SourceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ControlsView.xaml">
+    <Page Include="Views\ConfigureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,14 +82,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Database\AzureDatabase.cs" />
+    <Compile Include="Database\SQLConnection.cs" />
+    <Compile Include="ViewModel\SourceViewModel.cs" />
     <Compile Include="ViewModel\ConfigureViewModel.cs" />
-    <Compile Include="ViewModel\ControlsViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
+    <Compile Include="Views\SourceView.xaml.cs">
+      <DependentUpon>SourceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfigureView.xaml.cs">
       <DependentUpon>ConfigureView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ControlsView.xaml.cs">
-      <DependentUpon>ControlsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
@@ -140,5 +142,6 @@
   <ItemGroup>
     <Resource Include="Assets\fdaleMap.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

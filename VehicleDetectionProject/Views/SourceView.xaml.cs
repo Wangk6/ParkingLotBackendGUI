@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace VehicleDetectionProject.Views
 {
     /// <summary>
-    /// Interaction logic for Controls.xaml
+    /// Interaction logic for Configure.xaml
     /// </summary>
-    public partial class ControlsView : UserControl
+    public partial class SourceView : UserControl
     {
-        public ControlsView()
+        public SourceView()
         {
             InitializeComponent();
         }

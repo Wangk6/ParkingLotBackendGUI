@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VehicleDetectionProject.ViewModel
 {
-    public class ControlsViewModel
+    public class SourceViewModel
     {
     }
 }

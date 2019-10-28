@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace VehicleDetectionProject.Views
 {
     /// <summary>
-    /// Interaction logic for Configure.xaml
+    /// Interaction logic for Controls.xaml
     /// </summary>
     public partial class ConfigureView : UserControl
     {

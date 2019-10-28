@@ -46,9 +46,9 @@ namespace VehicleDetectionProject
             DataContext = new DashboardViewModel();
         }
         
-        private void ControlView_Clicked(object sender, RoutedEventArgs e)
+        private void SourceView_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new ControlsViewModel();
+            DataContext = new SourceViewModel();
         }
 
         private void ConfigureView_Clicked(object sender, RoutedEventArgs e)
@@ -57,9 +57,6 @@ namespace VehicleDetectionProject
 
         }
 
-        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }
