@@ -6,26 +6,24 @@
              xmlns:local="clr-namespace:VehicleDetectionProject.Views"
              mc:Ignorable="d" 
              Background="#222831"
-             d:DesignHeight="860" d:DesignWidth="1250">
+             d:DesignHeight="860" d:DesignWidth="1250" Loaded="SourceView_Loaded">
     <Grid>
-        <TextBlock Text="Camera URL" FontWeight="Bold" Foreground="#00adb5" FontSize="30" Margin="17,38,0,0" HorizontalAlignment="Left" Width="321" Height="47" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="47" Margin="338,38,0,0" FontSize="15" VerticalContentAlignment="Bottom" TextWrapping="Wrap" VerticalAlignment="Top" Width="588"/>
-        <TextBlock Text="Parking Lot" FontWeight="Bold" Foreground="#00adb5" FontSize="30" Margin="17,134,0,0" HorizontalAlignment="Left" Width="321" Height="56" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="338,134,0,0" FontSize="15" VerticalContentAlignment="Bottom" VerticalAlignment="Top" Width="588" Height="56"/>
+        <TextBlock Text="Camera URL" FontWeight="Bold" Foreground="#00adb5" FontSize="30" Margin="17,142,0,0" HorizontalAlignment="Left" Width="321" Height="46" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBoxCameraURL" HorizontalAlignment="Left" Height="46" Margin="338,142,0,0" FontSize="25" VerticalContentAlignment="Bottom" TextWrapping="Wrap" VerticalAlignment="Top" Width="588"/>
+        <TextBlock Text="Parking Lot" FontWeight="Bold" Foreground="#00adb5" FontSize="30" Margin="17,50,0,0" HorizontalAlignment="Left" Width="321" Height="56" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxParkingLot" HorizontalAlignment="Left" Margin="338,50,0,0" FontSize="25" VerticalContentAlignment="Bottom" VerticalAlignment="Top" Width="588" Height="56" SelectionChanged="ParkingLot_SelectionChanged"/>
 
-        <ListView HorizontalAlignment="Left" Height="394" Margin="10,336,0,0" VerticalAlignment="Top" Width="916">
+        <ListView x:Name="listViewParkingLot" HorizontalAlignment="Left" Height="394" Margin="10,336,0,0" VerticalAlignment="Top" Width="916">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Camera URL" Width="Auto" >
-
-                    </GridViewColumn>
-                    <GridViewColumn Header="Parking Lot" Width="Auto" >
-
-                    </GridViewColumn>
+                    <GridViewColumn  Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}"/>
+                    <GridViewColumn  Header="Parking Lot Number" Width="Auto" DisplayMemberBinding="{Binding LotNumber}"/>
+                    <GridViewColumn Header="Camera URL" Width="Auto" DisplayMemberBinding="{Binding CameraURL}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <Button Content="Add Camera" FontSize="25" HorizontalAlignment="Left" Margin="338,222,0,0" VerticalAlignment="Top" Width="240" Height="50"/>
+        <Button x:Name="buttonAddCamera" Content="Add Camera" FontSize="25" HorizontalAlignment="Left" Margin="338,222,0,0" VerticalAlignment="Top" Width="240" Height="50" Click="buttonAddCamera_Click"/>
+        <Button x:Name="buttonRefresh" Content="Refresh" FontSize="25" HorizontalAlignment="Left" Margin="762,222,0,0" VerticalAlignment="Top" Width="164" Height="50" Click="buttonRefresh_Click"/>
     </Grid>
 </UserControl>

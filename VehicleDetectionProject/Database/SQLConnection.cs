@@ -9,12 +9,10 @@ namespace VehicleDetectionProject.Database
 {
     public static class SQLConnection
     {
-        public static string ConnString(string name)
+        public static string ConnString(string name) //ParkingLotDB
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
-
-        //https://docs.microsoft.com/en-us/azure/sql-database/sql-database-connect-query-dotnet-visual-studio
 
     }
 }

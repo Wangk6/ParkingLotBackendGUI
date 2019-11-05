@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VehicleDetectionProject.ViewModel;
 
 namespace VehicleDetectionProject.Views
 {
@@ -20,9 +21,24 @@ namespace VehicleDetectionProject.Views
     /// </summary>
     public partial class ConfigureView : UserControl
     {
+        //Establish connection
+        //Query parking lot names and numbers
+        ConfigureViewModel svm = new ConfigureViewModel();
+
         public ConfigureView()
         {
             InitializeComponent();
+        }
+
+
+        private void ConfigureView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var lots = svm.GetParkingLots();
+            //Add to comboBoxParkingLot combobox
+            for (int i = 0; i < lots.Count; i++)
+            {
+                comboBoxParkingLot.Items.Add(lots[i].LotName + " " + lots[i].LotNumber);
+            }
         }
     }
 }

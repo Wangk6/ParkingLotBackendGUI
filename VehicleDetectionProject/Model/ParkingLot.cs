@@ -12,7 +12,7 @@ namespace VehicleDetectionProject.Database
 
         public string LotName { get; set; }
 
-        public int LotNumber { get; set; }
+        public string LotNumber { get; set; }
 
         public int Num_Of_Cars_Parked { get; set; }
 
@@ -25,5 +25,7 @@ namespace VehicleDetectionProject.Database
         public string Lot_Message { get; set; }
 
         public string PermitType { get; set; }
+
+        public string CameraURL { get; set; }
     }
 }

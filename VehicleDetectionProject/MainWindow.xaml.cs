@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VehicleDetectionProject.Database;
 using VehicleDetectionProject.ViewModel;
 
 namespace VehicleDetectionProject
@@ -22,7 +23,8 @@ namespace VehicleDetectionProject
     public partial class MainWindow : Window
     {
         //Change status, do [name.Foreground] for pack icons
-    
+
+        List<ParkingLot> parkingLots = new List<ParkingLot>();
 
         public MainWindow()
         {
@@ -53,6 +55,7 @@ namespace VehicleDetectionProject
 
         private void ConfigureView_Clicked(object sender, RoutedEventArgs e)
         {
+            //Initialize 
             DataContext = new ConfigureViewModel();
 
         }
