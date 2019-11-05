@@ -34,7 +34,7 @@
             </Border>
         </Grid>
 
-        <Grid Width="774" HorizontalAlignment="Left" Margin="20,542,0,0" Height="228" VerticalAlignment="Top" >
+        <Grid Width="774" HorizontalAlignment="Left" Margin="10,542,0,0" Height="228" VerticalAlignment="Top" >
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" Margin="0,30,0,-30">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
@@ -57,7 +57,7 @@
                         <TextBlock x:Name="txtParkingLotCurrentParked" Text="3" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="156"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="60">
-                        <materialDesign:PackIcon Kind="TicketUser" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF85DE" Background="White"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon Kind="TicketUser" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF85DE" Background="Transparent"></materialDesign:PackIcon>
                         <TextBlock Text="Category" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
                         <TextBlock x:Name="txtParkingLotCategory" Text="Student" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="55,14,70,13" Width="118"/>
                         <materialDesign:PackIcon Kind="About" Width="35" Height="35" Margin="10 10"  Foreground="#FF0AE400"/>
@@ -68,9 +68,9 @@
                 </StackPanel>
             </Border>
         </Grid>
-        <Rectangle Fill="#393e46" HorizontalAlignment="Left" Height="450" Margin="14,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="780"/>
+        <Rectangle Fill="#393e46" HorizontalAlignment="Left" Height="450" Margin="10,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="780"/>
         <materialDesign:PackIcon Kind="VideocamOff" Width="36" Height="34" Margin="388,318,0,0"  Foreground="#FFD1D1D1"/>
-        <MediaElement HorizontalAlignment="Left" Height="450" Margin="14,110,0,0" VerticalAlignment="Top" Width="780"/>
+        <MediaElement HorizontalAlignment="Left" Height="450" Margin="10,110,0,0" VerticalAlignment="Top" Width="780"/>
 
         <Grid Width="344" HorizontalAlignment="Left" Margin="812,120,0,0" Height="140" VerticalAlignment="Top">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
@@ -79,12 +79,12 @@
                         <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" HorizontalAlignment="Left" Width="344" Height="30" VerticalAlignment="Top"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged"/>
+                        <ComboBox x:Name="comboBoxParkingLot" FontSize="25"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid Width="1142" HorizontalAlignment="Left" Margin="14,16,0,0" Height="80" VerticalAlignment="Top">
+        <Grid Width="1142" HorizontalAlignment="Left" Margin="10,16,0,0" Height="80" VerticalAlignment="Top">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="35" HorizontalAlignment="Center">

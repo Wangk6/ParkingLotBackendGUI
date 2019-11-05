@@ -46,7 +46,10 @@ namespace VehicleDetectionProject.Views
                 //Name
                 txtParkingLotName.Text = pk[index].LotName;
                 //Number
-                txtParkingLotNumber.Text = pk[index].LotNumber.ToString();
+                if (pk[index].LotNumber != null)
+                {
+                    txtParkingLotNumber.Text = pk[index].LotNumber.ToString();
+                }
                 //Category
                 txtParkingLotCategory.Text = pk[index].PermitType;
                 //Status

@@ -90,7 +90,7 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Image Source="Assets/fdaleMap.png" Grid.Column="1" Margin="10,130,180,-27"></Image>
+        <Image Source="Assets/fdaleMap.png" Grid.Column="1" Margin="0,0,0,0"></Image>
 
         <ContentControl x:Name="MainDisplay" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="1" Content="{Binding}"/>
         

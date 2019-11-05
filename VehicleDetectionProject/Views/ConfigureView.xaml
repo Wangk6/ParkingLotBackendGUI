@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1250" Loaded="ConfigureView_Loaded">
     <Grid Background="#222831">
-        <Grid Width="920" HorizontalAlignment="Left" Margin="33,175,0,0" Height="310" VerticalAlignment="Top" >
+        <Grid Width="920" HorizontalAlignment="Left" Margin="10,147,0,0" Height="310" VerticalAlignment="Top" >
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="35">
@@ -56,7 +56,7 @@
                         </ComboBox>
                         <Button Background="#FF6B7985" BorderBrush="#FF12C900" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="80, 0, 0, 0" Click="Modify_Click">
                             <materialDesign:PackIcon Kind="Check" Width="50" Height="50" Foreground="#FF12C900"/>
-                            </Button>
+                        </Button>
 
                         <Button Background="#FF6B7985" BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="80, 0, 0, 0" Click="Cancel_Click">
                             <materialDesign:PackIcon Kind="Clear" Width="50" Height="50" Foreground="Red"/>
@@ -66,7 +66,7 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Height="267" Margin="33,510,149,0" VerticalAlignment="Top">
+        <ListView x:Name="listViewParkingLot" Height="267" Margin="10,482,159,0" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}">
@@ -91,7 +91,7 @@
             </ListView.View>
         </ListView>
 
-        <Grid Width="920" HorizontalAlignment="Left" Margin="33,37,0,0" Height="130" VerticalAlignment="Top" >
+        <Grid Width="920" HorizontalAlignment="Left" Margin="10,9,0,0" Height="130" VerticalAlignment="Top" >
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
