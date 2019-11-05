@@ -23,13 +23,11 @@ namespace VehicleDetectionProject.Views
     public partial class SourceView : UserControl
     {
         List<ParkingLot> pk = new List<ParkingLot>();
-
+        SourceViewModel svm;
         public SourceView()
         {
             InitializeComponent();
-            //Query parking lot names and numbers
-            SourceViewModel svm = new SourceViewModel();
-            pk = svm.GetParkingLots();
+            RefreshData();
         }
 
         private void SourceView_Loaded(object sender, RoutedEventArgs e)
@@ -62,10 +60,9 @@ namespace VehicleDetectionProject.Views
 
         private void FillInfo()
         {
-            //Clear any boxes and templates before
-            comboBoxParkingLot.Text = null;
-            textBoxCameraURL.Text = null;
-            listViewParkingLot.Items.Clear();
+            ClearInfo();
+            //Add Refresh when inserting/updating camera url to database is complete
+            //RefreshData()
 
             //Add to comboBoxParkingLot combobox
             foreach (ParkingLot i in pk)
@@ -76,11 +73,22 @@ namespace VehicleDetectionProject.Views
             }
         }
 
+        private void ClearInfo()
+        {
+            comboBoxParkingLot.Text = null;
+            textBoxCameraURL.Text = null;
+            listViewParkingLot.Items.Clear();
+        }
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            SourceViewModel svm = new SourceViewModel();
-            pk = svm.GetParkingLots();
+            RefreshData();
             FillInfo();
+        }
+
+        private void RefreshData()
+        {
+            svm = new SourceViewModel();
+            pk = svm.GetParkingLots();
         }
     }
 }

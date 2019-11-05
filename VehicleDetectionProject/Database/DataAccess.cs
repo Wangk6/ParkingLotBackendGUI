@@ -35,5 +35,22 @@ namespace VehicleDetectionProject.Database
                 return null;
             }
         }
+
+        //Used to query all parking lot status messages information 
+        public List<ParkingLot> GetStatusMessage()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    return connection.Query<ParkingLot>($"SELECT * FROM viewParkingLotMessages").ToList();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                return null;
+            }
+        }
     }
 }

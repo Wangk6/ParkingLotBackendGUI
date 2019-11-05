@@ -8,69 +8,84 @@
              mc:Ignorable="d" 
              d:DesignHeight="860" d:DesignWidth="1250" Loaded="ConfigureView_Loaded">
     <Grid Background="#222831">
-
-        <Grid Width="920" HorizontalAlignment="Left" Margin="33,175,0,0" Height="400" VerticalAlignment="Top" >
+        <Grid Width="920" HorizontalAlignment="Left" Margin="33,175,0,0" Height="310" VerticalAlignment="Top" >
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Configure" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="35" Width="920"/>
+                    <StackPanel Orientation="Horizontal" Height="35">
+                        <TextBlock Text="Configure" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="30">
+                        <TextBlock Text="Camera Source" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Camera Source" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="30"/>
+                        <TextBox x:Name="textBoxCameraURL" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="880" Height="55" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="35">
+                        <TextBlock Text="Status" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
+                        <TextBlock Text="Message (Optional)" VerticalAlignment="Bottom" Margin="130, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBox HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="AliceBlue" VerticalAlignment="Top" Width="880" Height="55"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Status" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="30"/>
-                        <TextBlock Text="Message (Optional)" VerticalAlignment="Bottom" Margin="105, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="30"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxStatus" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0">
+                        <ComboBox x:Name="comboBoxStatus" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="25" Width="150" Margin="20, 0, 0, 0">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
                             <ComboBoxItem Content="Open" FontSize="25"/>
                             <ComboBoxItem Content="Closed" FontSize="25"/>
                         </ComboBox>
-                        <ComboBox x:Name="comboBoxMessage" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0"/>
+                        <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" Background="#FF585C5F" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0">
+                            <ComboBoxItem Content="Add New Message" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
+                        </ComboBox>
+                        <TextBox x:Name="textBoxMessage" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="35">
+                        <TextBlock Text="Cars Parked" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
+                        <TextBlock Text="Max Capacity" VerticalAlignment="Bottom" Margin="75, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
+                        <TextBlock Text="Permit Type" VerticalAlignment="Bottom" Margin="70, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Cars Parked" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="30"/>
-                        <TextBlock Text="Max Capacity" VerticalAlignment="Bottom" Margin="25, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="30"/>
-                        <TextBlock Text="Permit Type" VerticalAlignment="Bottom" Margin="25, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="30"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBox x:Name="textBoxCarsParked" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="AliceBlue" VerticalAlignment="Top" Width="165" Height="55"/>
-                        <TextBox x:Name="textBoxMaxCapacity" HorizontalAlignment="Left" Margin="27, 0, 0, 0" Background="AliceBlue" VerticalAlignment="Top" Width="190" Height="55"/>
-                        <ComboBox x:Name="comboBoxPermitType" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0">
+                        <TextBox x:Name="textBoxCarsParked" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="165" Height="55" Foreground="White"/>
+                        <TextBox x:Name="textBoxMaxCapacity" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="27, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="190" Height="55" Foreground="White"/>
+                        <ComboBox x:Name="comboBoxPermitType" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0">
                             <ComboBoxItem Content="Student" FontSize="25"/>
                             <ComboBoxItem Content="Staff" FontSize="25"/>
-                            <ComboBoxItem Content="Resident" FontSize="25"/>
-                            <ComboBoxItem Content="Electric" FontSize="25"/>
+                            <ComboBoxItem Content="Resident"  FontSize="25"/>
+                            <ComboBoxItem Content="EV" FontSize="25"/>
                         </ComboBox>
+                        <Button Background="#FF6B7985" BorderBrush="#FF12C900" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="80, 0, 0, 0" Click="Modify_Click">
+                            <materialDesign:PackIcon Kind="Check" Width="50" Height="50" Foreground="#FF12C900"/>
+                            </Button>
+
+                        <Button Background="#FF6B7985" BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="80, 0, 0, 0" Click="Cancel_Click">
+                            <materialDesign:PackIcon Kind="Clear" Width="50" Height="50" Foreground="Red"/>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <ListView HorizontalAlignment="Left" Height="267" Margin="33,580,0,0" VerticalAlignment="Top" Width="920">
+        <ListView x:Name="listViewParkingLot" Height="267" Margin="33,510,149,0" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Parking Lot Name" Width="Auto" >
+                    <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Parking Lot Number" Width="Auto" >
+                    <GridViewColumn Header="Parking Lot Number" Width="Auto" DisplayMemberBinding="{Binding LotNumber}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Status" Width="Auto" >
+                    <GridViewColumn Header="Open" Width="Auto" DisplayMemberBinding="{Binding Is_Lot_Open}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Message" Width="Auto" >
+                    <GridViewColumn Header="Message" Width="Auto" DisplayMemberBinding="{Binding Lot_Message}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Cars Parked" Width="Auto" >
+                    <GridViewColumn Header="Cars Parked" Width="Auto" DisplayMemberBinding="{Binding Num_Of_Cars_Parked}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Is Lot Full" Width="Auto" >
+                    <GridViewColumn Header="Is Lot Full" Width="Auto" DisplayMemberBinding="{Binding Is_lot_Full}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Max Capacity" Width="Auto" >
+                    <GridViewColumn Header="Max Capacity" Width="Auto" DisplayMemberBinding="{Binding MaxCapacity}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Permit Type" Width="Auto" >
+                    <GridViewColumn Header="Permit Type" Width="Auto" DisplayMemberBinding="{Binding PermitType}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Camera URL" Width="Auto" >
+                    <GridViewColumn Header="Camera URL" Width="Auto" DisplayMemberBinding="{Binding CameraURL}">
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
@@ -80,10 +95,10 @@
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Parking Lot Name" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="35" Width="920"/>
+                        <TextBlock Text="Parking Lot" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" VerticalAlignment="Bottom" Width="880" Height="55" Margin="20, 0, 0, 0"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="#FF585C5F" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" SelectionChanged="ParkingLot_SelectionChanged"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

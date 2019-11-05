@@ -72,19 +72,19 @@
                     <ListViewItem Height="100" Selected="DashboardView_Clicked">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Television" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
-                            <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
+                            <TextBlock Text="Dashboard" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="100" Selected="ConfigureView_Clicked">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ControlPoint" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
-                            <TextBlock Text="Configure" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
+                            <TextBlock Text="Configure" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"/>
                         </StackPanel>
                     </ListViewItem>
                     <ListViewItem Height="100" Selected="SourceView_Clicked">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Settings" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
-                            <TextBlock Text="Source" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"></TextBlock>
+                            <TextBlock Background="Transparent" Text="Source" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>

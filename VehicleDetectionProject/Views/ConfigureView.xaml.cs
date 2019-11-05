@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VehicleDetectionProject.Database;
 using VehicleDetectionProject.ViewModel;
 
 namespace VehicleDetectionProject.Views
@@ -21,24 +22,101 @@ namespace VehicleDetectionProject.Views
     /// </summary>
     public partial class ConfigureView : UserControl
     {
-        //Establish connection
-        //Query parking lot names and numbers
-        ConfigureViewModel svm = new ConfigureViewModel();
-
+        List<ParkingLot> pk = new List<ParkingLot>();
+        List<ParkingLot> msg = new List<ParkingLot>();
+        ConfigureViewModel cvm;
         public ConfigureView()
         {
             InitializeComponent();
+            //Query parking lot names and numbers
+            RefreshData();
         }
 
 
         private void ConfigureView_Loaded(object sender, RoutedEventArgs e)
         {
-            var lots = svm.GetParkingLots();
-            //Add to comboBoxParkingLot combobox
-            for (int i = 0; i < lots.Count; i++)
+            FillInfo();
+        }
+
+        //User selects a parking lot and displays existing camera URL
+        private void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
             {
-                comboBoxParkingLot.Items.Add(lots[i].LotName + " " + lots[i].LotNumber);
+                int index = comboBoxParkingLot.SelectedIndex;
+                //URL
+                textBoxCameraURL.Text = pk[index].CameraURL;
+                //Status
+                comboBoxStatus.Text = (pk[index].Is_Lot_Open == 'Y') ? "Open" : "Closed";
+                //Message
+                comboBoxMessage.Text = pk[index].Lot_Message;
+                //Cars Parked
+                textBoxCarsParked.Text = pk[index].Num_Of_Cars_Parked.ToString();
+                //Max Capacity
+                textBoxMaxCapacity.Text = pk[index].MaxCapacity.ToString();
+                //Permit Type
+                comboBoxPermitType.Text = pk[index].PermitType;
             }
+            catch (ArgumentOutOfRangeException ex) { };
+        }
+
+        private void FillInfo()
+        {
+            RefreshData();
+            ClearInfo();
+            //Change to default visibility
+            comboBoxMessage.Visibility = Visibility.Visible;
+            textBoxMessage.Visibility = Visibility.Hidden;
+
+            //Add to comboBoxParkingLot combobox
+            foreach (ParkingLot i in pk)
+            {
+                comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
+                //Parking Lot Name ListView
+                listViewParkingLot.Items.Add(new ParkingLot { LotName = i.LotName, LotNumber = i.LotNumber, Is_Lot_Open = i.Is_Lot_Open, Lot_Message = i.Lot_Message, Num_Of_Cars_Parked = i.Num_Of_Cars_Parked, MaxCapacity = i.MaxCapacity, PermitType = i.PermitType, CameraURL = i.CameraURL, Is_lot_Full = i.Is_lot_Full });
+            }
+
+            //Add to comboBoxMessage combobox
+            foreach(ParkingLot i in msg)
+            {
+                comboBoxMessage.Items.Add(i.Lot_Message);
+            }
+        }
+
+        private void ClearInfo()
+        {
+            comboBoxParkingLot.Text = null;
+            textBoxCameraURL.Text = null;
+            comboBoxStatus.Text = null;
+            comboBoxMessage.Text = null;
+            textBoxCarsParked.Text = null;
+            textBoxMaxCapacity.Text = null;
+            comboBoxPermitType.Text = null;
+            listViewParkingLot.Items.Clear();
+        }
+
+        private void AddNewMessage_Selected(object sender, RoutedEventArgs e)
+        {
+            comboBoxMessage.Visibility = Visibility.Hidden;
+            textBoxMessage.Visibility = Visibility.Visible;
+        }
+
+        //Empty
+        private void Modify_Click(object sender, RoutedEventArgs e)
+        {
+            //Get all fields
+        }
+
+        private void RefreshData()
+        {
+            cvm = new ConfigureViewModel();
+            pk = cvm.GetParkingLots();
+            msg = cvm.GetStatusMessage();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            FillInfo();
         }
     }
 }

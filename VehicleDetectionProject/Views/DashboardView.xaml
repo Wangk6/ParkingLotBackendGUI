@@ -7,87 +7,95 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              Background="#222831"
-             d:DesignHeight="860" d:DesignWidth="1250">
+             d:DesignHeight="860" d:DesignWidth="1250" Loaded="DashboardView_Loaded">
     <Grid>
-        <Grid Width="284" HorizontalAlignment="Left" Margin="10,516,0,0" Height="224" VerticalAlignment="Top">
+        <Grid Width="350" HorizontalAlignment="Left" Margin="812,297,0,0" Height="244" VerticalAlignment="Top">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
                         <TextBlock Text="Status" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Height="35" Width="284"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <Image Height="30" Width="30"  Source="/VehicleDetectionProject;component/Assets/connectionIcon.png" Margin="10 10"/>
                         <TextBlock Text="Connection" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <materialDesign:PackIcon Name="connectionStatus" Kind="Circle" Width="35" Height="35" Margin="60 10"  Foreground="Red"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon x:Name="connectionStatusIcon" Kind="Circle" Width="35" Height="35" Margin="100 10"  Foreground="Red"></materialDesign:PackIcon>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <Image Height="30" Width="30"  Source="/VehicleDetectionProject;component/Assets/streamIcon.png" Margin="10 10"/>
                         <TextBlock Text="Stream" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <materialDesign:PackIcon Name="streamStatus" Kind="Circle" Width="35" Height="35"  Margin="109 10"  Foreground="Red"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon x:Name="streamStatusIcon" Kind="Circle" Width="35" Height="35"  Margin="150 10"  Foreground="Red"></materialDesign:PackIcon>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="60">
                         <Image Height="30" Width="30"  Source="/VehicleDetectionProject;component/Assets/targetIcon.png" Margin="10 10"/>
                         <TextBlock Text="Tracking" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <materialDesign:PackIcon Name="trackingStatus" Kind="Circle" Width="35" Height="35"  Margin="95 10"  Foreground="Red"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon Name="trackingStatusIcon" Kind="Circle" Width="35" Height="35"  Margin="135 10"  Foreground="Red"></materialDesign:PackIcon>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <Grid Width="344" HorizontalAlignment="Left" Margin="802,161,0,0" Height="290" VerticalAlignment="Top" >
-            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
+        <Grid Width="774" HorizontalAlignment="Left" Margin="20,542,0,0" Height="228" VerticalAlignment="Top" >
+            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" Margin="0,30,0,-30">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
                         <TextBlock Text="Parking Lot" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Height="35" Width="340"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Parking" Width="35" Height="35" Margin="10 10"  Foreground="#FF2085FF"></materialDesign:PackIcon>
                         <TextBlock Text="Name" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotName" Text="Student Lot" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="22" Margin="60,11,0,11" Width="147"/>
+                        <TextBlock x:Name="txtParkingLotName" Text="Student Lot" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="22" Margin="60,11,70,11" Width="147"/>
+                        <materialDesign:PackIcon Kind="Message" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FF8D8D8D"></materialDesign:PackIcon>
+                        <TextBlock Text="Status" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
+                        <TextBlock x:Name="txtParkingLotStatus" Text="Open" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="60,13,0,12" Width="164"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="FormatListNumbered" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF9135"></materialDesign:PackIcon>
                         <TextBlock Text="Number" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotNumber" Text="#15" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="65,12,0,11" Width="117"/>
+                        <TextBlock x:Name="txtParkingLotNumber" Text="#15" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="65,12,70,11" Width="117"/>
+                        <materialDesign:PackIcon Kind="Car" Width="35" Height="35" Margin="10 10"  Foreground="#FF2085FF"/>
+                        <TextBlock Text="Parked" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
+                        <TextBlock x:Name="txtParkingLotCurrentParked" Text="3" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="156"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="60">
-                        <materialDesign:PackIcon Kind="TicketUser" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF85DE"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon Kind="TicketUser" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF85DE" Background="White"></materialDesign:PackIcon>
                         <TextBlock Text="Category" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCategory" Text="Student" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="55,14,0,13" Width="118"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="60">
-                        <materialDesign:PackIcon Kind="Message" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FF8D8D8D"></materialDesign:PackIcon>
-                        <TextBlock Text="Status" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotStatus" Text="Open" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="60,14,0,13" Width="145"/>
+                        <TextBlock x:Name="txtParkingLotCategory" Text="Student" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="55,14,70,13" Width="118"/>
+                        <materialDesign:PackIcon Kind="About" Width="35" Height="35" Margin="10 10"  Foreground="#FF0AE400"/>
+                        <TextBlock Text="Available" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
+                        <TextBlock x:Name="txtParkingLotCurrentAvailable" Text="12" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="25" Margin="65,14,0,13" Width="126"/>
                     </StackPanel>
 
                 </StackPanel>
             </Border>
         </Grid>
-        <Rectangle Fill="#393e46" HorizontalAlignment="Left" Height="450" Margin="4,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="780"/>
-        <materialDesign:PackIcon Kind="VideocamOff" Width="36" Height="34" Margin="378,242,0,0"  Foreground="#FFD1D1D1"/>
-        <MediaElement HorizontalAlignment="Left" Height="450" Margin="4,34,0,0" VerticalAlignment="Top" Width="780"/>
+        <Rectangle Fill="#393e46" HorizontalAlignment="Left" Height="450" Margin="14,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="780"/>
+        <materialDesign:PackIcon Kind="VideocamOff" Width="36" Height="34" Margin="388,318,0,0"  Foreground="#FFD1D1D1"/>
+        <MediaElement HorizontalAlignment="Left" Height="450" Margin="14,110,0,0" VerticalAlignment="Top" Width="780"/>
 
-        <Grid Width="320" HorizontalAlignment="Left" Margin="376,508,0,0" Height="174" VerticalAlignment="Top" >
+        <Grid Width="344" HorizontalAlignment="Left" Margin="812,120,0,0" Height="140" VerticalAlignment="Top">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Parking" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Height="35" Width="320"/>
+                        <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" HorizontalAlignment="Left" Width="344" Height="30" VerticalAlignment="Top"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
-                        <materialDesign:PackIcon Kind="Car" Width="35" Height="35" Margin="10 10"  Foreground="#FF2085FF"/>
-                        <TextBlock Text="Parked" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCurrentParked" Text="3" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="115"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Height="55">
-                        <materialDesign:PackIcon Kind="About" Width="35" Height="35" Margin="10 10"  Foreground="#FF0AE400"/>
-                        <TextBlock Text="Available" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCurrentAvailable" Text="12" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="25" Margin="65,12,0,11" Width="88"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
+                        <ComboBox x:Name="comboBoxParkingLot"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="802,69,0,0" VerticalAlignment="Top" Width="344" Height="52"/>
-        <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Margin="802,34,0,0" HorizontalAlignment="Left" Width="344" Height="30" VerticalAlignment="Top"/>
+        <Grid Width="1142" HorizontalAlignment="Left" Margin="14,16,0,0" Height="80" VerticalAlignment="Top">
+            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="35" HorizontalAlignment="Center">
+                        <TextBlock Text="Message" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" HorizontalAlignment="Center" Width="344" VerticalAlignment="Top"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="55">
+                        <materialDesign:PackIcon Kind="Message" Width="35" Height="Auto" Margin="20,0,20,20" Foreground="#FFFF366D" VerticalAlignment="Stretch"></materialDesign:PackIcon>
+                        <TextBlock x:Name="txtMessage" TextWrapping="Wrap" Margin="20,-5,20,0" Text="" VerticalAlignment="Top" TextAlignment="Left" Foreground="White" FontSize="25" Width="1001" Height="50"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

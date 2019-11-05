@@ -10,16 +10,15 @@ namespace VehicleDetectionProject.ViewModel
     public class ConfigureViewModel
     {
         DataAccess db = new DataAccess();
-        List<ParkingLot> pk = new List<ParkingLot>();
-
-        public ConfigureViewModel()
-        {
-            pk = db.GetAllParkingLot();
-        }
 
         public List<ParkingLot> GetParkingLots()
         {
-            return pk;
+            return db.GetAllParkingLot();
+        }
+
+        public List<ParkingLot> GetStatusMessage()
+        {
+            return db.GetStatusMessage();
         }
     }
 }
