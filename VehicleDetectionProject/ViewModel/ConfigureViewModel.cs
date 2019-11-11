@@ -32,14 +32,8 @@ namespace VehicleDetectionProject.ViewModel
         }
 
         public void ParkingLotInfo(int parkingLotID, int? maxCapacity, string permitType)
-        {
-            //If permitType Student
-            //If permitType Staff
-            //If permitType Resident
-            //If permitType EV
-          
-
-            db.ParkingLotInfo(parkingLotID, maxCapacity, permitType);
+        {       
+         db.ParkingLotInfo(parkingLotID, maxCapacity, permitType);
         }
     }
 }

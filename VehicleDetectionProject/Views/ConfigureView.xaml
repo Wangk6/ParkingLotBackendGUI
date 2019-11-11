@@ -15,7 +15,7 @@
                         <TextBlock Text="Configure" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="30">
-                        <TextBlock Text="Camera Source" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
+                        <TextBlock Text="Camera Source" VerticalAlignment="Bottom" Margin="20,0,0,-1" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <TextBox x:Name="textBoxCameraURL" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="880" Height="55" Foreground="White"/>
@@ -26,12 +26,6 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <ComboBox x:Name="comboBoxStatus" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="25" Width="150" Margin="20, 0, 0, 0">
-                            <ComboBox.Background>
-                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                                    <GradientStop Color="White" Offset="1"/>
-                                </LinearGradientBrush>
-                            </ComboBox.Background>
                             <ComboBoxItem Content="Open" FontSize="25"/>
                             <ComboBoxItem Content="Closed" FontSize="25"/>
                         </ComboBox>
@@ -95,10 +89,11 @@
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBlock Text="Parking Lot" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"/>
+                        <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"><Run Text="Parking Lot"/></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="#FF585C5F" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, 0, 0" SelectionChanged="ParkingLot_SelectionChanged"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="#FF585C5F" VerticalContentAlignment="Center" Foreground="White" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged"/>
+                        <materialDesign:PackIcon x:Name="NoParkingLotSelected" Kind="Error" Width="50" Height="50" Foreground="#FFEC4A4A" VerticalAlignment="Center" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

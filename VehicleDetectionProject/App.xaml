@@ -119,6 +119,17 @@
             </Setter>
         </Style>
         
+        <!--ComboBox dropdown-->
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Background" Value="#FF585C5F"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Background" Value="#FF585C5F"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         
     </Application.Resources>
 </Application>

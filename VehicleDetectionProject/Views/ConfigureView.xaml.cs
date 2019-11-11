@@ -55,6 +55,7 @@ namespace VehicleDetectionProject.Views
                 textBoxMaxCapacity.Text = pk[index].MaxCapacity.ToString();
                 //Permit Type
                 comboBoxPermitType.Text = pk[index].PermitType;
+                NoParkingLotSelected.Visibility = Visibility.Hidden;
             }
             catch (ArgumentOutOfRangeException ex) { };
         }
@@ -85,6 +86,7 @@ namespace VehicleDetectionProject.Views
 
         private void ClearInfo()
         {
+            textBoxMessage.Text = null;
             comboBoxParkingLot.Text = null;
             textBoxCameraURL.Text = null;
             comboBoxStatus.Text = null;
@@ -104,60 +106,67 @@ namespace VehicleDetectionProject.Views
         //Empty
         private void Modify_Click(object sender, RoutedEventArgs e)
         {
-            int index = comboBoxParkingLot.SelectedIndex + 1;
-            //If Camera Source is not Empty
-            if(!textBoxCameraURL.Text.Trim().Equals(null))
+            //A parking lot is selected
+            if (comboBoxParkingLot.SelectedItem != null)
             {
-                string cameraURL = textBoxCameraURL.Text.Trim();
-                cvm.UpdateCameraURL(index, cameraURL);
-            }
-            //If Status is not empty
-            if (!comboBoxStatus.SelectedItem.Equals(null))
-            {
-                string status = comboBoxStatus.SelectedItem.ToString();
-                //User wants to add a new message, we use the insert statement*******************************
-                if(comboBoxMessage.Text.Equals("Add New Message"))
+                int index = comboBoxParkingLot.SelectedIndex + 1;
+
+                //If Camera Source is not Empty
+                if (textBoxCameraURL.Text.Trim() != "")
                 {
-
+                    string cameraURL = textBoxCameraURL.Text.Trim();
+                    cvm.UpdateCameraURL(index, cameraURL);
                 }
-                //Message is not empty, get message index************************************
-                else if(comboBoxMessage.SelectedItem.Equals(null))
+                //If Status is not empty
+                if (comboBoxStatus.SelectedItem != null)
                 {
-                    int message = comboBoxMessage.SelectedIndex + 1;
-
-
+                    string status = comboBoxStatus.SelectedItem.ToString();
+                    //User wants to add a new message, we use the insert statement*******************************
+                    if (comboBoxMessage.Text.Equals("Add New Message"))
+                    {
+                        textBoxMessage.Text.Trim();
+                    }
+                    //Message is not empty, get message index************************************
+                    else if (comboBoxMessage.SelectedItem != null)
+                    {
+                        int message = comboBoxMessage.SelectedIndex + 1;
+                    }
                 }
-            }
 
-            //If cars parked is not null
-            if (!textBoxCarsParked.Text.Trim().Equals(null))
-            {
-                int num;
-                int.TryParse(textBoxCarsParked.Text.Trim(), out num);
-                cvm.LotInfoParkedCars(index, num);
-            }
+                //If cars parked is not null
+                if (textBoxCarsParked.Text.Trim() != null)
+                {
+                    int num;
+                    int.TryParse(textBoxCarsParked.Text.Trim(), out num);
+                    cvm.LotInfoParkedCars(index, num);
+                }
 
-            //If max capacity and Permit type is not null
-            if (!textBoxMaxCapacity.Text.Trim().Equals(null) && !comboBoxPermitType.Text.Equals(null))
-            {
-                int capacity;
-                int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
-                cvm.ParkingLotInfo(index, capacity, comboBoxPermitType.Text);
-            }
-            //Else if max capacity is not null
-            else if(!textBoxMaxCapacity.Text.Trim().Equals(null))
-            {
-                int capacity;
-                int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
-                cvm.ParkingLotInfo(index, capacity, null);
-            }
-            //Else permit type is not null and max capacity is null
-            else
-            {
-                cvm.ParkingLotInfo(index, null, comboBoxPermitType.Text);
-            }
+                //If max capacity and Permit type is not null
+                if (textBoxMaxCapacity.Text.Trim() != null && comboBoxPermitType.SelectedItem != null)
+                {
+                    int capacity;
+                    int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
+                    cvm.ParkingLotInfo(index, capacity, comboBoxPermitType.Text);
+                }
+                //Else if max capacity is not null
+                else if (textBoxMaxCapacity.Text.Trim() != null)
+                {
+                    int capacity;
+                    int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
+                    cvm.ParkingLotInfo(index, capacity, null);
+                }
+                //Else permit type is not null and max capacity is null
+                else if(comboBoxPermitType.SelectedItem != null)
+                {
+                    cvm.ParkingLotInfo(index, null, comboBoxPermitType.Text);
+                }
 
-
+                FillInfo();
+            }
+            else //Display that no parking lot is selected message
+            {
+                NoParkingLotSelected.Visibility = Visibility.Visible;
+            }
         }
 
         private void RefreshData()
