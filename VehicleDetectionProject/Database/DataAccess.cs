@@ -126,5 +126,30 @@ namespace VehicleDetectionProject.Database
                 }
             }
         }
+
+        //Used to update status and message for parking lot
+        public void ParkingLotStatus(int parkingLotID, char status, string message)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("spParkingLotStatus", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@ParkingLotID", parkingLotID));
+                        command.Parameters.Add(new SqlParameter("@Status", status));
+                        command.Parameters.Add(new SqlParameter("@Message", message));
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
     }
 }

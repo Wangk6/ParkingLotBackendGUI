@@ -87,10 +87,12 @@ namespace VehicleDetectionProject.Views
         private void ClearInfo()
         {
             textBoxMessage.Text = null;
-            comboBoxParkingLot.Text = null;
+            comboBoxParkingLot.Items.Clear();
             textBoxCameraURL.Text = null;
             comboBoxStatus.Text = null;
-            comboBoxMessage.Text = null;
+            comboBoxMessage.Items.Clear();
+            comboBoxMessage.Items.Add("Add New Item");
+            comboBoxMessage.Items.Add(" ");
             textBoxCarsParked.Text = null;
             textBoxMaxCapacity.Text = null;
             comboBoxPermitType.Text = null;
@@ -120,16 +122,28 @@ namespace VehicleDetectionProject.Views
                 //If Status is not empty
                 if (comboBoxStatus.SelectedItem != null)
                 {
-                    string status = comboBoxStatus.SelectedItem.ToString();
+                    string status = comboBoxStatus.Text.ToString();
+
                     //User wants to add a new message, we use the insert statement*******************************
-                    if (comboBoxMessage.Text.Equals("Add New Message"))
+                    if (comboBoxMessage.Text == "Add New Message")
                     {
-                        textBoxMessage.Text.Trim();
+                        cvm.ParkingLotStatus(index, status, textBoxMessage.Text.Trim());
                     }
                     //Message is not empty, get message index************************************
                     else if (comboBoxMessage.SelectedItem != null)
                     {
-                        int message = comboBoxMessage.SelectedIndex + 1;
+                        if (comboBoxMessage.SelectedIndex == 1)
+                        {
+                            cvm.ParkingLotStatus(index, status, null);
+                        }
+                        else
+                        {
+                            cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
+                        }
+                    }
+                    else //Message is empty, status is set
+                    {
+                        cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
                     }
                 }
 

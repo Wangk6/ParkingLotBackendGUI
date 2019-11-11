@@ -31,8 +31,9 @@
                         </ComboBox>
                         <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" Background="#FF585C5F" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0">
                             <ComboBoxItem Content="Add New Message" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
+                            <ComboBoxItem Content="Empty" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
                         </ComboBox>
-                        <TextBox x:Name="textBoxMessage" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
+                        <TextBox x:Name="textBoxMessage" FontSize="25" Foreground="White" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="35">
                         <TextBlock Text="Cars Parked" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>

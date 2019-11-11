@@ -94,6 +94,8 @@ namespace VehicleDetectionProject.Views
             txtParkingLotCurrentParked.Text = null;
             //Max Capacity
             txtParkingLotCurrentAvailable.Text = null;
+
+            comboBoxParkingLot.Items.Clear();
         }
 
         private void connectionStatus(bool status)
