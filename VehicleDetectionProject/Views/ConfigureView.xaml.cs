@@ -73,7 +73,7 @@ namespace VehicleDetectionProject.Views
             {
                 comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
                 //Parking Lot Name ListView
-                listViewParkingLot.Items.Add(new ParkingLot { LotName = i.LotName, LotNumber = i.LotNumber, Is_Lot_Open = i.Is_Lot_Open, Lot_Message = i.Lot_Message, Num_Of_Cars_Parked = i.Num_Of_Cars_Parked, MaxCapacity = i.MaxCapacity, PermitType = i.PermitType, CameraURL = i.CameraURL, Is_lot_Full = i.Is_lot_Full });
+                listViewParkingLot.Items.Add(i);
             }
 
             //Add to comboBoxMessage combobox
