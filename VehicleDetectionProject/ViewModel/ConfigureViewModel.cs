@@ -20,5 +20,26 @@ namespace VehicleDetectionProject.ViewModel
         {
             return db.GetStatusMessage();
         }
+
+        public void UpdateCameraURL(int parkingLotID, string cameraURL)
+        {
+            db.UpdateCameraURL(parkingLotID, cameraURL);
+        }
+
+        public void LotInfoParkedCars(int parkingLotID, int carsParked)
+        {
+            db.LotInfoParkedCars(parkingLotID, carsParked);
+        }
+
+        public void ParkingLotInfo(int parkingLotID, int? maxCapacity, string permitType)
+        {
+            //If permitType Student
+            //If permitType Staff
+            //If permitType Resident
+            //If permitType EV
+          
+
+            db.ParkingLotInfo(parkingLotID, maxCapacity, permitType);
+        }
     }
 }

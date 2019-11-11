@@ -28,7 +28,6 @@ namespace VehicleDetectionProject.Views
         public DashboardView()
         {
             InitializeComponent();
-            RefreshData();
         }
 
         private void DashboardView_Loaded(object sender, RoutedEventArgs e)
@@ -70,7 +69,7 @@ namespace VehicleDetectionProject.Views
         {
             ClearInfo();
             //Add Refresh when inserting/updating camera url to database is complete
-            //RefreshData()
+            RefreshData();
 
             //Add to comboBoxParkingLot combobox
             foreach (ParkingLot i in pk)

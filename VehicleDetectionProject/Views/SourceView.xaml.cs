@@ -60,6 +60,7 @@ namespace VehicleDetectionProject.Views
             catch(ArgumentOutOfRangeException ex) { };
         }
 
+        //Clears the information previously and adds up-to-date data
         private void FillInfo()
         {
             ClearInfo();
@@ -83,7 +84,6 @@ namespace VehicleDetectionProject.Views
         }
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            RefreshData();
             FillInfo();
         }
 

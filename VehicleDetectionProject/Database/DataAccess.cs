@@ -76,6 +76,55 @@ namespace VehicleDetectionProject.Database
 
                 }
             }
+        }        
+        
+        //Used to update number of cars parked for parking lot
+        public void LotInfoParkedCars(int parkingLotID, int carsParked)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("spLotInfoParkedCars", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@ParkingLotID", parkingLotID));
+                        command.Parameters.Add(new SqlParameter("@CarsParked", carsParked));
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        //Used to update max capacity and permit type for parking lot
+        public void ParkingLotInfo(int parkingLotID, int? maxCapacity, string permitType)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("spParkingLotInfo", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@ParkingLotID", parkingLotID));
+                        command.Parameters.Add(new SqlParameter("@MaxCapacity", maxCapacity));
+                        command.Parameters.Add(new SqlParameter("@PermitType", permitType));
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
     }
 }

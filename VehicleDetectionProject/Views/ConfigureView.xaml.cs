@@ -29,7 +29,6 @@ namespace VehicleDetectionProject.Views
         {
             InitializeComponent();
             //Query parking lot names and numbers
-            RefreshData();
         }
 
 
@@ -62,8 +61,9 @@ namespace VehicleDetectionProject.Views
 
         private void FillInfo()
         {
-            RefreshData();
             ClearInfo();
+            RefreshData();
+
             //Change to default visibility
             comboBoxMessage.Visibility = Visibility.Visible;
             textBoxMessage.Visibility = Visibility.Hidden;
@@ -104,7 +104,60 @@ namespace VehicleDetectionProject.Views
         //Empty
         private void Modify_Click(object sender, RoutedEventArgs e)
         {
-            //Get all fields
+            int index = comboBoxParkingLot.SelectedIndex + 1;
+            //If Camera Source is not Empty
+            if(!textBoxCameraURL.Text.Trim().Equals(null))
+            {
+                string cameraURL = textBoxCameraURL.Text.Trim();
+                cvm.UpdateCameraURL(index, cameraURL);
+            }
+            //If Status is not empty
+            if (!comboBoxStatus.SelectedItem.Equals(null))
+            {
+                string status = comboBoxStatus.SelectedItem.ToString();
+                //User wants to add a new message, we use the insert statement*******************************
+                if(comboBoxMessage.Text.Equals("Add New Message"))
+                {
+
+                }
+                //Message is not empty, get message index************************************
+                else if(comboBoxMessage.SelectedItem.Equals(null))
+                {
+                    int message = comboBoxMessage.SelectedIndex + 1;
+
+
+                }
+            }
+
+            //If cars parked is not null
+            if (!textBoxCarsParked.Text.Trim().Equals(null))
+            {
+                int num;
+                int.TryParse(textBoxCarsParked.Text.Trim(), out num);
+                cvm.LotInfoParkedCars(index, num);
+            }
+
+            //If max capacity and Permit type is not null
+            if (!textBoxMaxCapacity.Text.Trim().Equals(null) && !comboBoxPermitType.Text.Equals(null))
+            {
+                int capacity;
+                int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
+                cvm.ParkingLotInfo(index, capacity, comboBoxPermitType.Text);
+            }
+            //Else if max capacity is not null
+            else if(!textBoxMaxCapacity.Text.Trim().Equals(null))
+            {
+                int capacity;
+                int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
+                cvm.ParkingLotInfo(index, capacity, null);
+            }
+            //Else permit type is not null and max capacity is null
+            else
+            {
+                cvm.ParkingLotInfo(index, null, comboBoxPermitType.Text);
+            }
+
+
         }
 
         private void RefreshData()
