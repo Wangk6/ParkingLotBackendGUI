@@ -20,7 +20,19 @@
         <DataTemplate x:Name="configureViewTemplate" DataType="{x:Type viewmodels:SourceViewModel}">
             <views:SourceView DataContext="{Binding}"/>
         </DataTemplate>
-        
+        <Style x:Key="ListViewItemStyle1" TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="LightBlue" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="true">
+                    <Setter Property="Background" Value="LightCoral" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftGridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -67,8 +79,8 @@
                         <materialDesign:PackIcon Height="50" Width="40" Kind="Menu" Foreground="#00adb5" ></materialDesign:PackIcon>
                     </Button>
                 </Grid>
-                
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#393e46" Foreground="Aquamarine" BorderBrush="Aqua">
+
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="#393e46" Foreground="Aquamarine" BorderBrush="Aqua" ItemContainerStyle="{StaticResource ListViewItemStyle1}">
                     <ListViewItem Height="100" Selected="DashboardView_Clicked">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Television" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>

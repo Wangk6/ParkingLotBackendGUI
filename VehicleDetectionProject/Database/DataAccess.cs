@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace VehicleDetectionProject.Database
         //Used to query all parking lot status messages information 
         public List<ParkingLot> GetStatusMessage()
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            using (IDbConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
             {
                 try
                 {
@@ -50,6 +51,30 @@ namespace VehicleDetectionProject.Database
 
                 }
                 return null;
+            }
+        }
+
+        //Used to update camera url for parking lot
+        public void UpdateCameraURL(int parkingLotID, string cameraURL)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("spUpdateCameraURL", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@ParkingLotID", parkingLotID));
+                        command.Parameters.Add(new SqlParameter("@CameraURL", cameraURL));
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
     }

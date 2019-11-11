@@ -40,8 +40,10 @@ namespace VehicleDetectionProject.Views
         {
             try
             {
-                int index = comboBoxParkingLot.SelectedIndex;
-                pk[index].CameraURL = textBoxCameraURL.Text.Trim();
+                int index = comboBoxParkingLot.SelectedIndex + 1;
+                string url = textBoxCameraURL.Text.Trim();
+                //Update parking lots camera url
+                svm.UpdateCameraURL(index, url);
                 FillInfo();
             }
             catch (ArgumentOutOfRangeException ex) { };
@@ -62,7 +64,7 @@ namespace VehicleDetectionProject.Views
         {
             ClearInfo();
             //Add Refresh when inserting/updating camera url to database is complete
-            //RefreshData()
+            RefreshData();
 
             //Add to comboBoxParkingLot combobox
             foreach (ParkingLot i in pk)

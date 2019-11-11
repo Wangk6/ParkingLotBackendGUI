@@ -9,16 +9,20 @@
              Background="#222831"
              d:DesignHeight="860" d:DesignWidth="1250" Loaded="SourceView_Loaded">
     <Grid>
-        <Grid Width="909" HorizontalAlignment="Left" Margin="10,10,0,0" Height="240" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="143*"/>
+            <RowDefinition Height="287*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10,10,293,19.886">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
+                    <StackPanel Orientation="Horizontal" Height="55" Margin="350,0,349,0">
                         <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="35"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Parking" Width="35" Height="35" Margin="10 20 0 0"  Foreground="#FF2085FF"></materialDesign:PackIcon>
                         <TextBlock Text="Parking Lot"  FontWeight="Bold" VerticalAlignment="Bottom" Margin="10 0 20 0" Foreground="#00fff5" FontSize="25"/>
-                        <ComboBox x:Name="comboBoxParkingLot" HorizontalAlignment="Right" Height="45" FontSize="25" VerticalContentAlignment="Center" Width="650" SelectionChanged="ParkingLot_SelectionChanged"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Height="45" FontSize="25" VerticalContentAlignment="Center" Width="650" SelectionChanged="ParkingLot_SelectionChanged"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Link" Height="35" Width="35" Margin="10 20 10 0" Foreground="White"/>
@@ -35,7 +39,7 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" HorizontalAlignment="Left" Height="394" Margin="10,268,0,0" VerticalAlignment="Top" Width="916">
+        <ListView x:Name="listViewParkingLot" Margin="10,32,293,146" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}"/>

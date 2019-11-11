@@ -15,5 +15,10 @@ namespace VehicleDetectionProject.ViewModel
         {
             return db.GetAllParkingLot();
         }
+
+        public void UpdateCameraURL(int parkingLotID, string cameraURL)
+        {
+            db.UpdateCameraURL(parkingLotID, cameraURL);
+        }
     }
 }
