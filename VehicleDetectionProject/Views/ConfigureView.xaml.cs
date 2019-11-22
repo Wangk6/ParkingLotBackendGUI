@@ -69,18 +69,25 @@ namespace VehicleDetectionProject.Views
             comboBoxMessage.Visibility = Visibility.Visible;
             textBoxMessage.Visibility = Visibility.Hidden;
 
-            //Add to comboBoxParkingLot combobox
-            foreach (ParkingLot i in pk)
+            try
             {
-                comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
-                //Parking Lot Name ListView
-                listViewParkingLot.Items.Add(i);
-            }
+                //Add to comboBoxParkingLot combobox
+                foreach (ParkingLot i in pk)
+                {
+                    comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
+                    //Parking Lot Name ListView
+                    listViewParkingLot.Items.Add(i);
+                }
 
-            //Add to comboBoxMessage combobox
-            foreach(ParkingLot i in msg)
+                //Add to comboBoxMessage combobox
+                foreach (ParkingLot i in msg)
+                {
+                    comboBoxMessage.Items.Add(i.Lot_Message);
+                }
+            }
+            catch(Exception e)
             {
-                comboBoxMessage.Items.Add(i.Lot_Message);
+
             }
         }
 

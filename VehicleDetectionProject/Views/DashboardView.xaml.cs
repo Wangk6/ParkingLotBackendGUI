@@ -71,10 +71,17 @@ namespace VehicleDetectionProject.Views
             //Add Refresh when inserting/updating camera url to database is complete
             RefreshData();
 
-            //Add to comboBoxParkingLot combobox
-            foreach (ParkingLot i in pk)
+            try
             {
-                comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
+                //Add to comboBoxParkingLot combobox
+                foreach (ParkingLot i in pk)
+                {
+                    comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
+                }
+            }
+            catch(Exception e)
+            {
+                connectionStatus(false);
             }
         }
 
