@@ -56,6 +56,8 @@ namespace VehicleDetectionProject.Views
                 //Permit Type
                 comboBoxPermitType.Text = pk[index].PermitType;
                 NoParkingLotSelected.Visibility = Visibility.Hidden;
+                comboBoxMessage.Visibility = Visibility.Visible;
+                textBoxMessage.Visibility = Visibility.Hidden;
             }
             catch (ArgumentOutOfRangeException ex) { };
         }

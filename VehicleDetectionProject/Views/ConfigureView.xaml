@@ -92,7 +92,8 @@
                         <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"><Run Text="Parking Lot"/></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="#FF585C5F" VerticalContentAlignment="Center" Foreground="White" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="Red" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}">
+                        </ComboBox>
                         <materialDesign:PackIcon x:Name="NoParkingLotSelected" Kind="Error" Width="50" Height="50" Foreground="#FFEC4A4A" VerticalAlignment="Center" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
