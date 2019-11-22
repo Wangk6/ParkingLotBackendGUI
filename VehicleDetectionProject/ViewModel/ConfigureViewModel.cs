@@ -35,11 +35,5 @@ namespace VehicleDetectionProject.ViewModel
         {       
          db.ParkingLotInfo(parkingLotID, maxCapacity, permitType);
         }
-
-        public void ParkingLotStatus(int parkingLotID, string status, string message)
-        {
-            char pStatus = status == "Open" ? 'Y' : 'N';
-            db.ParkingLotStatus(parkingLotID, pStatus, message);
-        }
     }
 }

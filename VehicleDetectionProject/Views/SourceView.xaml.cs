@@ -78,7 +78,7 @@ namespace VehicleDetectionProject.Views
 
         private void ClearInfo()
         {
-            comboBoxParkingLot.Items.Clear();
+            comboBoxParkingLot.Text = null;
             textBoxCameraURL.Text = null;
             listViewParkingLot.Items.Clear();
         }
