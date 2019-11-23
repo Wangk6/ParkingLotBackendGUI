@@ -56,6 +56,8 @@ namespace VehicleDetectionProject.Views
                 //Permit Type
                 comboBoxPermitType.Text = pk[index].PermitType;
                 NoParkingLotSelected.Visibility = Visibility.Hidden;
+                comboBoxMessage.Visibility = Visibility.Visible;
+                textBoxMessage.Visibility = Visibility.Hidden;
             }
             catch (ArgumentOutOfRangeException ex) { };
         }
@@ -69,34 +71,31 @@ namespace VehicleDetectionProject.Views
             comboBoxMessage.Visibility = Visibility.Visible;
             textBoxMessage.Visibility = Visibility.Hidden;
 
-            //Add to comboBoxParkingLot combobox if not empty
-            if (pk != null)
+            //Add to comboBoxParkingLot combobox
+            foreach (ParkingLot i in pk)
             {
-                foreach (ParkingLot i in pk)
-                {
-                    comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
-                    //Parking Lot Name ListView
-                    listViewParkingLot.Items.Add(i);
-                }
+                comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
+                //Parking Lot Name ListView
+                listViewParkingLot.Items.Add(i);
+            }
 
+            //Add to comboBoxMessage combobox
+            foreach(ParkingLot i in msg)
+            {
+                comboBoxMessage.Items.Add(i.Lot_Message);
+            }
+        }
 
-                //Add to comboBoxMessage combobox
-                foreach (ParkingLot i in msg)
-                {
-                    comboBoxMessage.Items.Add(i.Lot_Message);
-                }
             }
         }
 
         private void ClearInfo()
         {
             textBoxMessage.Text = null;
-            comboBoxParkingLot.Items.Clear();
+            comboBoxParkingLot.Text = null;
             textBoxCameraURL.Text = null;
             comboBoxStatus.Text = null;
-            comboBoxMessage.Items.Clear();
-            comboBoxMessage.Items.Add("Add New Item");
-            comboBoxMessage.Items.Add(" ");
+            comboBoxMessage.Text = null;
             textBoxCarsParked.Text = null;
             textBoxMaxCapacity.Text = null;
             comboBoxPermitType.Text = null;
@@ -126,28 +125,16 @@ namespace VehicleDetectionProject.Views
                 //If Status is not empty
                 if (comboBoxStatus.SelectedItem != null)
                 {
-                    string status = comboBoxStatus.Text.ToString();
-
+                    string status = comboBoxStatus.SelectedItem.ToString();
                     //User wants to add a new message, we use the insert statement*******************************
-                    if (comboBoxMessage.Text == "Add New Message")
+                    if (comboBoxMessage.Text.Equals("Add New Message"))
                     {
-                        cvm.ParkingLotStatus(index, status, textBoxMessage.Text.Trim());
+                        textBoxMessage.Text.Trim();
                     }
                     //Message is not empty, get message index************************************
                     else if (comboBoxMessage.SelectedItem != null)
                     {
-                        if (comboBoxMessage.SelectedIndex == 1)
-                        {
-                            cvm.ParkingLotStatus(index, status, null);
-                        }
-                        else
-                        {
-                            cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
-                        }
-                    }
-                    else //Message is empty, status is set
-                    {
-                        cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
+                        int message = comboBoxMessage.SelectedIndex + 1;
                     }
                 }
 

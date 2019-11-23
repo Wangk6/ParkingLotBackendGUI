@@ -71,13 +71,10 @@ namespace VehicleDetectionProject.Views
             //Add Refresh when inserting/updating camera url to database is complete
             RefreshData();
 
-            //Add to comboBoxParkingLot combobox if not empty
-            if (pk != null)
+            //Add to comboBoxParkingLot combobox
+            foreach (ParkingLot i in pk)
             {
-                foreach (ParkingLot i in pk)
-                {
-                    comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
-                }
+                comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
             }
         }
 
@@ -97,8 +94,6 @@ namespace VehicleDetectionProject.Views
             txtParkingLotCurrentParked.Text = null;
             //Max Capacity
             txtParkingLotCurrentAvailable.Text = null;
-
-            comboBoxParkingLot.Items.Clear();
         }
 
         private void connectionStatus(bool status)

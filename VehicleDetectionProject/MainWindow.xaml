@@ -30,6 +30,7 @@
                     <Setter Property="Background" Value="LightCoral" />
                     <Setter Property="Foreground" Value="White" />
                 </Trigger>
+                
             </Style.Triggers>
         </Style>
 

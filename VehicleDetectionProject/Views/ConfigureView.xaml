@@ -31,9 +31,8 @@
                         </ComboBox>
                         <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" Background="#FF585C5F" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0">
                             <ComboBoxItem Content="Add New Message" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
-                            <ComboBoxItem Content="Empty" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
                         </ComboBox>
-                        <TextBox x:Name="textBoxMessage" FontSize="25" Foreground="White" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
+                        <TextBox x:Name="textBoxMessage" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="35">
                         <TextBlock Text="Cars Parked" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
@@ -93,7 +92,8 @@
                         <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"><Run Text="Parking Lot"/></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="#FF585C5F" VerticalContentAlignment="Center" Foreground="White" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="Red" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}">
+                        </ComboBox>
                         <materialDesign:PackIcon x:Name="NoParkingLotSelected" Kind="Error" Width="50" Height="50" Foreground="#FFEC4A4A" VerticalAlignment="Center" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
