@@ -25,11 +25,11 @@
                         <TextBlock Text="Message (Optional)" VerticalAlignment="Bottom" Margin="130, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxStatus" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="25" Width="150" Margin="20, 0, 0, 0">
+                        <ComboBox x:Name="comboBoxStatus" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="25" Width="150" Margin="20, 0, 0, 0" Template="{DynamicResource ComboBoxControlTemplate1}">
                             <ComboBoxItem Content="Open" FontSize="25"/>
                             <ComboBoxItem Content="Closed" FontSize="25"/>
                         </ComboBox>
-                        <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" Background="#FF585C5F" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0">
+                        <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" Background="#FF585C5F" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0" Template="{DynamicResource ComboBoxControlTemplate1}">
                             <ComboBoxItem Content="Add New Message" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
                         </ComboBox>
                         <TextBox x:Name="textBoxMessage" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
@@ -40,9 +40,9 @@
                         <TextBlock Text="Permit Type" VerticalAlignment="Bottom" Margin="70, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBox x:Name="textBoxCarsParked" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="165" Height="55" Foreground="White"/>
-                        <TextBox x:Name="textBoxMaxCapacity" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="27, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="190" Height="55" Foreground="White"/>
-                        <ComboBox x:Name="comboBoxPermitType" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0">
+                        <TextBox x:Name="textBoxCarsParked" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="147" Height="55" Foreground="White"/>
+                        <TextBox x:Name="textBoxMaxCapacity" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="50, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="178" Height="55" Foreground="White"/>
+                        <ComboBox x:Name="comboBoxPermitType" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0" Template="{DynamicResource ComboBoxControlTemplate1}">
                             <ComboBoxItem Content="Student" FontSize="25"/>
                             <ComboBoxItem Content="Staff" FontSize="25"/>
                             <ComboBoxItem Content="Resident"  FontSize="25"/>
@@ -92,8 +92,7 @@
                         <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"><Run Text="Parking Lot"/></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" Width="880" Background="Red" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}">
-                        </ComboBox>
+                        <ComboBox x:Name="comboBoxParkingLot" Width="880" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}"/>
                         <materialDesign:PackIcon x:Name="NoParkingLotSelected" Kind="Error" Width="50" Height="50" Foreground="#FFEC4A4A" VerticalAlignment="Center" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
