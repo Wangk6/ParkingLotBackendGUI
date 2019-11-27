@@ -88,6 +88,7 @@ namespace VehicleDetectionProject.Views
             comboBoxParkingLot.Text = null;
             textBoxCameraURL.Text = null;
             listViewParkingLot.Items.Clear();
+            comboBoxParkingLot.Items.Clear();
         }
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {

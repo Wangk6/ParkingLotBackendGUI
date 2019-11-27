@@ -87,6 +87,7 @@ namespace VehicleDetectionProject.Views
 
         private void ClearInfo()
         {
+            comboBoxParkingLot.Items.Clear();
             //Name
             txtParkingLotName.Text = null;
             //Number
