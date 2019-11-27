@@ -79,7 +79,7 @@
                         <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" HorizontalAlignment="Left" Width="344" Height="30" VerticalAlignment="Top"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" FontSize="25"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}"/>
+                        <ComboBox x:Name="comboBoxParkingLot" FontSize="25"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -22,7 +22,7 @@
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Parking" Width="35" Height="35" Margin="10 20 0 0"  Foreground="#FF2085FF"></materialDesign:PackIcon>
                         <TextBlock Text="Parking Lot"  FontWeight="Bold" VerticalAlignment="Bottom" Margin="10 0 20 0" Foreground="#00fff5" FontSize="25"/>
-                        <ComboBox x:Name="comboBoxParkingLot" Height="45" FontSize="25" VerticalContentAlignment="Center" Width="650" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Height="45" FontSize="25" VerticalContentAlignment="Center" Width="650" SelectionChanged="ParkingLot_SelectionChanged"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Link" Height="35" Width="35" Margin="10 20 10 0" Foreground="White"/>
