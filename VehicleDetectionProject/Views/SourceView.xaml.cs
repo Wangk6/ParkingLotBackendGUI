@@ -27,7 +27,6 @@ namespace VehicleDetectionProject.Views
         public SourceView()
         {
             InitializeComponent();
-            RefreshData();
         }
 
         private void SourceView_Loaded(object sender, RoutedEventArgs e)
@@ -49,33 +48,18 @@ namespace VehicleDetectionProject.Views
             catch (ArgumentOutOfRangeException ex) { };
         }
 
-        //User selects a parking lot and displays existing camera URL
-        private void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                int index = comboBoxParkingLot.SelectedIndex;
-                textBoxCameraURL.Text = pk[index].CameraURL;
-            }
-            catch(ArgumentOutOfRangeException ex) { };
-        }
 
         //Clears the information previously and adds up-to-date data
         private void FillInfo()
         {
-            ClearInfo();
             //Add Refresh when inserting/updating camera url to database is complete
             RefreshData();
 
             try
             {
                 //Add to comboBoxParkingLot combobox
-                foreach (ParkingLot i in pk)
-                {
-                    comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
-                    //Parking Lot Name ListView
-                    listViewParkingLot.Items.Add(i);
-                }
+                comboBoxParkingLot.ItemsSource = pk;
+                listViewParkingLot.ItemsSource = pk;
             }
             catch(Exception e)
             {
@@ -83,13 +67,6 @@ namespace VehicleDetectionProject.Views
             }
         }
 
-        private void ClearInfo()
-        {
-            comboBoxParkingLot.Text = null;
-            textBoxCameraURL.Text = null;
-            listViewParkingLot.Items.Clear();
-            comboBoxParkingLot.Items.Clear();
-        }
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
             FillInfo();

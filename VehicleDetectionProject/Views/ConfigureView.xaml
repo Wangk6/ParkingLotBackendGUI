@@ -18,7 +18,7 @@
                         <TextBlock Text="Camera Source" VerticalAlignment="Bottom" Margin="20,0,0,-1" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBox x:Name="textBoxCameraURL" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="880" Height="55" Foreground="White"/>
+                        <TextBox x:Name="textBoxCameraURL" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="880" Height="55" Foreground="White" Text="{Binding SelectedItem.CameraURL, ElementName=comboBoxParkingLot}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="35">
                         <TextBlock Text="Status" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
@@ -29,10 +29,13 @@
                             <ComboBoxItem Content="Open" FontSize="25"/>
                             <ComboBoxItem Content="Closed" FontSize="25"/>
                         </ComboBox>
-                        <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" Background="#FF585C5F" HorizontalAlignment="Left" Width="690" Margin="42, 0, 0, 0" Template="{DynamicResource ComboBoxControlTemplate1}">
-                            <ComboBoxItem Content="Add New Message" FontSize="25" Background="#FF585C5F" Selected="AddNewMessage_Selected"/>
-                        </ComboBox>
-                        <TextBox x:Name="textBoxMessage" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="690" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
+
+                        <ComboBox x:Name="comboBoxMessage" FontSize="25" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="620" DisplayMemberPath="Lot_Message" SelectedValuePath="Lot_Message" Margin="42, 0, 0, 0"  Text="{Binding SelectedItem.Lot_Message, ElementName=comboBoxParkingLot}"/>
+                        <Button Background="#FF6B7985" ToolTip="Add New Custom Message" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Left" Width="60" Margin="5, 0, 0, 0" Click="AddNewMessage_Selected">
+                            <materialDesign:PackIcon Kind="NewBox" Width="50" Height="50" Foreground="White"/>
+                        </Button>
+                        <TextBox x:Name="textBoxMessage" FontSize="25" Foreground="White" Background="#FF585C5F" VerticalContentAlignment="Bottom" HorizontalAlignment="Left" Width="620" Margin="-690, 0, 0, 0" Visibility="Hidden"/>
+
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="35">
                         <TextBlock Text="Cars Parked" VerticalAlignment="Bottom" Margin="20, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
@@ -40,27 +43,30 @@
                         <TextBlock Text="Permit Type" VerticalAlignment="Bottom" Margin="70, 0, 0, 0" FontWeight="Bold" TextAlignment="Center" Foreground="#00fff5" FontSize="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <TextBox x:Name="textBoxCarsParked" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="147" Height="55" Foreground="White"/>
-                        <TextBox x:Name="textBoxMaxCapacity" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="50, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="178" Height="55" Foreground="White"/>
-                        <ComboBox x:Name="comboBoxPermitType" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0" Template="{DynamicResource ComboBoxControlTemplate1}">
+                        <TextBox x:Name="textBoxCarsParked" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="20, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="147" Height="55" Foreground="White" Text="{Binding SelectedItem.Num_Of_Cars_Parked, ElementName=comboBoxParkingLot}"/>
+                        <TextBox x:Name="textBoxMaxCapacity" VerticalContentAlignment="Bottom" FontSize="25" HorizontalAlignment="Left" Margin="50, 0, 0, 0" Background="#FF585C5F" VerticalAlignment="Top" Width="178" Height="55" Foreground="White" Text="{Binding SelectedItem.MaxCapacity, ElementName=comboBoxParkingLot}"/>
+                        <ComboBox x:Name="comboBoxPermitType" FontSize="25" Background="#FF585C5F" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="150" Margin="20, 0, 0, 0" Template="{DynamicResource ComboBoxControlTemplate1}" Text="{Binding SelectedItem.PermitType, ElementName=comboBoxParkingLot}">
                             <ComboBoxItem Content="Student" FontSize="25"/>
                             <ComboBoxItem Content="Staff" FontSize="25"/>
                             <ComboBoxItem Content="Resident"  FontSize="25"/>
                             <ComboBoxItem Content="EV" FontSize="25"/>
                         </ComboBox>
-                        <Button Background="#FF6B7985" BorderBrush="#FF12C900" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="80, 0, 0, 0" Click="Modify_Click">
+                        <Button Background="#FF6B7985" BorderBrush="#FF12C900" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="30, 0, 0, 0" Click="Modify_Click">
                             <materialDesign:PackIcon Kind="Check" Width="50" Height="50" Foreground="#FF12C900"/>
                         </Button>
 
-                        <Button Background="#FF6B7985" BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="80, 0, 0, 0" Click="Cancel_Click">
+                        <Button Background="#FF6B7985" BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Left" Width="80" Margin="20, 0, 0, 0" Click="Cancel_Click">
                             <materialDesign:PackIcon Kind="Clear" Width="50" Height="50" Foreground="Red"/>
+                        </Button>
+                        <Button x:Name="buttonRefresh" BorderBrush="Wheat" BorderThickness="2" Background="#FF06BBBB" Foreground="White" FontSize="25" Margin="20, 0, 0, 0" Width="85" Height="50" Click="buttonRefresh_Click">
+                            <materialDesign:PackIcon Kind="DatabaseRefresh" Width="50" Height="50" Foreground="White"/>
                         </Button>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Height="267" Margin="10,482,159,0" VerticalAlignment="Top">
+        <ListView x:Name="listViewParkingLot" Height="267" Margin="10,482,159,0" VerticalAlignment="Top" ItemsSource="{Binding pk}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}">
@@ -79,8 +85,6 @@
                     </GridViewColumn>
                     <GridViewColumn Header="Permit Type" Width="Auto" DisplayMemberBinding="{Binding PermitType}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Camera URL" Width="Auto" DisplayMemberBinding="{Binding CameraURL}">
-                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -92,11 +96,12 @@
                         <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Width="920"><Run Text="Parking Lot"/></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" Width="880" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}"/>
+                        <ComboBox x:Name="comboBoxParkingLot" Width="880" VerticalContentAlignment="Center" FontSize="25" Margin="20, 0, -65, 0" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}" ItemsSource="{Binding pk}"/>
                         <materialDesign:PackIcon x:Name="NoParkingLotSelected" Kind="Error" Width="50" Height="50" Foreground="#FFEC4A4A" VerticalAlignment="Center" Visibility="Hidden"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Grid>
+
     </Grid>
 </UserControl>

@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VehicleDetectionProject.Database;
 using VehicleDetectionProject.ViewModel;
+using MaterialDesignThemes.Wpf;
+using System.Collections.ObjectModel;
 
 namespace VehicleDetectionProject.Views
 {
@@ -42,21 +44,8 @@ namespace VehicleDetectionProject.Views
             {
                 connectionStatus(true);
                 int index = comboBoxParkingLot.SelectedIndex;
-                //Name
-                txtParkingLotName.Text = pk[index].LotName;
-                //Number
-                if (pk[index].LotNumber != null)
-                {
-                    txtParkingLotNumber.Text = pk[index].LotNumber.ToString();
-                }
-                //Category
-                txtParkingLotCategory.Text = pk[index].PermitType;
                 //Status
                 txtParkingLotStatus.Text = (pk[index].Is_Lot_Open == 'Y') ? "Open" : "Closed";
-                //Message
-                txtMessage.Text = pk[index].Lot_Message;
-                //Cars Parked
-                txtParkingLotCurrentParked.Text = pk[index].Num_Of_Cars_Parked.ToString();
                 //Max Capacity
                 txtParkingLotCurrentAvailable.Text = (pk[index].MaxCapacity - pk[index].Num_Of_Cars_Parked).ToString();
             }
@@ -68,16 +57,12 @@ namespace VehicleDetectionProject.Views
         private void FillInfo()
         {
             ClearInfo();
-            //Add Refresh when inserting/updating camera url to database is complete
-            RefreshData();
 
             try
             {
-                //Add to comboBoxParkingLot combobox
-                foreach (ParkingLot i in pk)
-                {
-                    comboBoxParkingLot.Items.Add(i.LotName + " " + i.LotNumber);
-                }
+                //Add Refresh when inserting/updating camera url to database is complete
+                RefreshData();
+                comboBoxParkingLot.ItemsSource = pk;
             }
             catch(Exception e)
             {
@@ -87,19 +72,8 @@ namespace VehicleDetectionProject.Views
 
         private void ClearInfo()
         {
-            comboBoxParkingLot.Items.Clear();
-            //Name
-            txtParkingLotName.Text = null;
-            //Number
-            txtParkingLotNumber.Text = null;
-            //Category
-            txtParkingLotCategory.Text = null;
             //Status
             txtParkingLotStatus.Text = null;
-            //Message
-            txtMessage.Text = null;
-            //Cars Parked
-            txtParkingLotCurrentParked.Text = null;
             //Max Capacity
             txtParkingLotCurrentAvailable.Text = null;
         }

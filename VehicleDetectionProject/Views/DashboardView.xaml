@@ -18,7 +18,7 @@
                     <StackPanel Orientation="Horizontal" Height="55">
                         <Image Height="30" Width="30"  Source="/VehicleDetectionProject;component/Assets/connectionIcon.png" Margin="10 10"/>
                         <TextBlock Text="Connection" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <materialDesign:PackIcon x:Name="connectionStatusIcon" Kind="Circle" Width="35" Height="35" Margin="100 10"  Foreground="Red"></materialDesign:PackIcon>
+                        <materialDesign:PackIcon x:Name="connectionStatusIcon" Kind="Circle" Width="35" Height="35" Margin="100 10"  Foreground="Red"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <Image Height="30" Width="30"  Source="/VehicleDetectionProject;component/Assets/streamIcon.png" Margin="10 10"/>
@@ -43,23 +43,23 @@
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="Parking" Width="35" Height="35" Margin="10 10"  Foreground="#FF2085FF"></materialDesign:PackIcon>
                         <TextBlock Text="Name" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotName" Text="Student Lot" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="22" Margin="60,11,70,11" Width="147"/>
-                        <materialDesign:PackIcon Kind="Message" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FF8D8D8D"></materialDesign:PackIcon>
+                        <TextBlock x:Name="txtParkingLotName" Text="{Binding SelectedItem.LotName, ElementName=comboBoxParkingLot}" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="22" Margin="60,11,70,11" Width="147"/>
+                        <materialDesign:PackIcon Kind="Message" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FF8D8D8D"/>
                         <TextBlock Text="Status" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
                         <TextBlock x:Name="txtParkingLotStatus" Text="Open" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="60,13,0,12" Width="164"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55">
                         <materialDesign:PackIcon Kind="FormatListNumbered" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF9135"></materialDesign:PackIcon>
                         <TextBlock Text="Number" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotNumber" Text="#15" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="65,12,70,11" Width="117"/>
+                        <TextBlock x:Name="txtParkingLotNumber" Text="{Binding SelectedItem.LotNumber, ElementName=comboBoxParkingLot}" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="65,12,70,11" Width="117"/>
                         <materialDesign:PackIcon Kind="Car" Width="35" Height="35" Margin="10 10"  Foreground="#FF2085FF"/>
                         <TextBlock Text="Parked" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCurrentParked" Text="3" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="156"/>
+                        <TextBlock x:Name="txtParkingLotCurrentParked" Text="{Binding SelectedItem.Num_Of_Cars_Parked, ElementName=comboBoxParkingLot}" TextAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="25" Margin="60,11,0,11" Width="156"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="60">
                         <materialDesign:PackIcon Kind="TicketUser" VerticalAlignment="Bottom" Width="35" Height="35" Margin="10 10"  Foreground="#FFFF85DE" Background="Transparent"></materialDesign:PackIcon>
                         <TextBlock Text="Category" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
-                        <TextBlock x:Name="txtParkingLotCategory" Text="Student" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="55,14,70,13" Width="118"/>
+                        <TextBlock x:Name="txtParkingLotCategory" Text="{Binding SelectedItem.PermitType, ElementName=comboBoxParkingLot}" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="22" Margin="55,14,70,13" Width="118"/>
                         <materialDesign:PackIcon Kind="About" Width="35" Height="35" Margin="10 10"  Foreground="#FF0AE400"/>
                         <TextBlock Text="Available" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25"/>
                         <TextBlock x:Name="txtParkingLotCurrentAvailable" Text="12" VerticalAlignment="Center" TextAlignment="Right" Foreground="White" FontSize="25" Margin="65,14,0,13" Width="126"/>
@@ -79,7 +79,7 @@
                         <TextBlock Text="Camera Source" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" HorizontalAlignment="Left" Width="344" Height="30" VerticalAlignment="Top"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
-                        <ComboBox x:Name="comboBoxParkingLot" FontSize="25"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}"/>
+                        <ComboBox x:Name="comboBoxParkingLot" FontSize="25"  VerticalContentAlignment="Center" Width="300" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}"  ItemsSource="{Binding pk}"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -92,7 +92,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="55">
                         <materialDesign:PackIcon Kind="Message" Width="35" Height="Auto" Margin="20,0,20,20" Foreground="#FFFF366D" VerticalAlignment="Stretch"></materialDesign:PackIcon>
-                        <TextBlock x:Name="txtMessage" TextWrapping="Wrap" Margin="20,-5,20,0" Text="" VerticalAlignment="Top" TextAlignment="Left" Foreground="White" FontSize="25" Width="1001" Height="50"/>
+                        <TextBlock x:Name="txtMessage" TextWrapping="Wrap" Margin="20,-5,20,0" Text="{Binding SelectedItem.LotMessage, ElementName=comboBoxParkingLot}" VerticalAlignment="Top" TextAlignment="Left" Foreground="White" FontSize="25" Width="1001" Height="50"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
