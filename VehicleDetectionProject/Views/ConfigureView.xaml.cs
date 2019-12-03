@@ -116,7 +116,7 @@ namespace VehicleDetectionProject.Views
                         if (comboBoxStatus.SelectedItem != null) //If Status is not empty
                         {
                             //Message is not empty, get message index*
-                            if (comboBoxMessage.Text.Trim() != "")
+                            if (comboBoxMessage.Text != "")
                             {
                                 cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
                             }
@@ -188,8 +188,8 @@ namespace VehicleDetectionProject.Views
             {
                 pk = cvm.GetParkingLots();
                 msg = await Task.Run(() => cvm.GetStatusMessage());
+                FillInfoAsync();
                 RefreshData.Visibility = Visibility.Hidden;
-                //await Task.Run(() => FillInfoAsync()); //Wait until info is filled
             }
             else //Not Connected
             {
@@ -210,7 +210,7 @@ namespace VehicleDetectionProject.Views
             {
                 pk = cvm.GetParkingLots();
                 msg = cvm.GetStatusMessage();
-                await Task.Run(() => FillInfoAsync()); //Wait until info is filled
+                FillInfoAsync(); //Wait until info is filled
                 LoadingData.Visibility = Visibility.Hidden; //Loading Data Picture - Hidden
             }
             else //Not Connected

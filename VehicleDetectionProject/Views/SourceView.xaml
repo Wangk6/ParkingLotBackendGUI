@@ -52,7 +52,7 @@
         <Grid HorizontalAlignment="Left" Height="235" Margin="32,31,0,0" VerticalAlignment="Top" Width="925">
             <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="372,34,400,112" />
             <fa:ImageAwesome x:Name="RefreshDataIcon" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="372,34,400,112" />
-            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="84" Height="52" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="416,40,0,143" ToolTip="Connection Failed"/>
+            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="178,38,0,147" ToolTip="Connection Failed"/>
         </Grid>
     </Grid>
 </UserControl>

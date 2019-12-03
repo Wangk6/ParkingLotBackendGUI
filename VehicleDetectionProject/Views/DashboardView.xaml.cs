@@ -124,6 +124,7 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Found
             {
                 pk = await Task.Run(() => dvm.GetParkingLots());
+                FillInfo();
                 connectionStatus(true);
                 RefreshDataIcon.Visibility = Visibility.Hidden;
             }
@@ -146,7 +147,7 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Found
             {
                 pk = dvm.GetParkingLots();
-                await Task.Run(() => FillInfo());
+                FillInfo();
                 connectionStatus(true);
                 LoadingData.Visibility = Visibility.Hidden;
             }

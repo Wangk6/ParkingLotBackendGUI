@@ -52,7 +52,7 @@ namespace VehicleDetectionProject.Views
 
         //Add Refresh when inserting/updating camera url to database is complete
         //Clears the information previously and adds up-to-date data
-        private void FillInfo()
+        private void FillInfoASync()
         {
             try
             {
@@ -82,7 +82,7 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Established
             {
                 pk = svm.GetParkingLots();
-                await Task.Run(() => FillInfo());
+                FillInfoASync();
                 LoadingData.Visibility = Visibility.Hidden;
             }
             else //No Connection
@@ -104,6 +104,7 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Established
             {
                 pk = await Task.Run(() => svm.GetParkingLots());
+                FillInfoASync();
                 RefreshDataIcon.Visibility = Visibility.Hidden;
             }
             else //No Connection
