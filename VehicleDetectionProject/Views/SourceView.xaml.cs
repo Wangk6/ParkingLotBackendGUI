@@ -31,30 +31,29 @@ namespace VehicleDetectionProject.Views
 
         private void SourceView_Loaded(object sender, RoutedEventArgs e)
         {
-            FillInfo();
+            FillDataAsync();
         }
 
-        //Placeholder, need to add update sql statement ****************************************
         private void buttonAddCamera_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (!NoConnection.IsVisible) //There is a connection
             {
-                int index = comboBoxParkingLot.SelectedIndex + 1;
-                string url = textBoxCameraURL.Text.Trim();
-                //Update parking lots camera url
-                svm.UpdateCameraURL(index, url);
-                FillInfo();
+                try
+                {
+                    int index = comboBoxParkingLot.SelectedIndex + 1;
+                    string url = textBoxCameraURL.Text.Trim();
+                    //Update parking lots camera url
+                    svm.UpdateCameraURL(index, url);
+                    RefreshDataASync();
+                }
+                catch (ArgumentOutOfRangeException ex) { };
             }
-            catch (ArgumentOutOfRangeException ex) { };
         }
 
-
+        //Add Refresh when inserting/updating camera url to database is complete
         //Clears the information previously and adds up-to-date data
         private void FillInfo()
         {
-            //Add Refresh when inserting/updating camera url to database is complete
-            RefreshData();
-
             try
             {
                 //Add to comboBoxParkingLot combobox
@@ -69,13 +68,50 @@ namespace VehicleDetectionProject.Views
 
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            FillInfo();
+            RefreshDataASync();
         }
 
-        private void RefreshData()
+        private async Task FillDataAsync()
         {
+            NoConnection.Visibility = Visibility.Hidden;
+            LoadingData.Visibility = Visibility.Visible;
             svm = new SourceViewModel();
-            pk = svm.GetParkingLots();
+
+            bool status = await Task.Run(() => svm.IsServerConnected());
+
+            if (status == true) //Connection Established
+            {
+                pk = svm.GetParkingLots();
+                await Task.Run(() => FillInfo());
+                LoadingData.Visibility = Visibility.Hidden;
+            }
+            else //No Connection
+            {
+                NoConnection.Visibility = Visibility.Visible;
+                LoadingData.Visibility = Visibility.Hidden;
+                Console.WriteLine("Not Connected");
+            }
+        }
+
+        private async Task RefreshDataASync()
+        {
+            NoConnection.Visibility = Visibility.Hidden;
+            RefreshDataIcon.Visibility = Visibility.Visible;
+            svm = new SourceViewModel();
+
+            bool status = await Task.Run(() => svm.IsServerConnected());
+
+            if (status == true) //Connection Established
+            {
+                pk = await Task.Run(() => svm.GetParkingLots());
+                RefreshDataIcon.Visibility = Visibility.Hidden;
+            }
+            else //No Connection
+            {
+                NoConnection.Visibility = Visibility.Visible;
+                RefreshDataIcon.Visibility = Visibility.Hidden;
+                Console.WriteLine("Not Connected");
+            }
         }
     }
 }

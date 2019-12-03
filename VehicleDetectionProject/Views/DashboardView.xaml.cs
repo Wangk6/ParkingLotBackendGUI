@@ -34,7 +34,7 @@ namespace VehicleDetectionProject.Views
 
         private void DashboardView_Loaded(object sender, RoutedEventArgs e)
         {
-            FillInfo();
+            FillDataAsync();
         }
 
         //User selects a parking lot and displays existing camera URL
@@ -42,31 +42,27 @@ namespace VehicleDetectionProject.Views
         {
             try
             {
-                connectionStatus(true);
                 int index = comboBoxParkingLot.SelectedIndex;
                 //Status
                 txtParkingLotStatus.Text = (pk[index].Is_Lot_Open == 'Y') ? "Open" : "Closed";
                 //Max Capacity
                 txtParkingLotCurrentAvailable.Text = (pk[index].MaxCapacity - pk[index].Num_Of_Cars_Parked).ToString();
             }
-            catch (ArgumentOutOfRangeException ex) {
-                connectionStatus(false);
+            catch (Exception ex) {
+
             };
         }
 
         private void FillInfo()
         {
-            ClearInfo();
-
             try
             {
-                //Add Refresh when inserting/updating camera url to database is complete
-                RefreshData();
+                ClearInfo();
                 comboBoxParkingLot.ItemsSource = pk;
             }
             catch(Exception e)
             {
-                connectionStatus(false);
+
             }
         }
 
@@ -90,6 +86,7 @@ namespace VehicleDetectionProject.Views
                 connectionStatusIcon.Foreground = Brushes.Red;
             }
         }
+
         private void streamStatus(bool status)
         {
             //On
@@ -102,6 +99,7 @@ namespace VehicleDetectionProject.Views
                 streamStatusIcon.Foreground = Brushes.Red;
             }
         }
+
         private void trackingStatus(bool status)
         {
             //On
@@ -115,11 +113,54 @@ namespace VehicleDetectionProject.Views
             }
         }
 
-        private void RefreshData()
+        private async Task RefreshDataAsync()
         {
+            NoConnection.Visibility = Visibility.Hidden;
+            RefreshDataIcon.Visibility = Visibility.Visible;
             dvm = new DashboardViewModel();
-            pk = dvm.GetParkingLots();
+
+            bool status = await Task.Run(() => dvm.IsServerConnected());
+
+            if (status == true) //Connection Found
+            {
+                pk = await Task.Run(() => dvm.GetParkingLots());
+                connectionStatus(true);
+                RefreshDataIcon.Visibility = Visibility.Hidden;
+            }
+            else //No Connection
+            {
+                RefreshDataIcon.Visibility = Visibility.Hidden;
+                NoConnection.Visibility = Visibility.Visible;
+                connectionStatus(false);
+            }
         }
 
+        private async Task FillDataAsync()
+        {
+            NoConnection.Visibility = Visibility.Hidden;
+            LoadingData.Visibility = Visibility.Visible;
+            dvm = new DashboardViewModel();
+
+            bool status = await Task.Run(() => dvm.IsServerConnected());
+
+            if (status == true) //Connection Found
+            {
+                pk = dvm.GetParkingLots();
+                await Task.Run(() => FillInfo());
+                connectionStatus(true);
+                LoadingData.Visibility = Visibility.Hidden;
+            }
+            else //No Connection
+            {
+                LoadingData.Visibility = Visibility.Hidden;
+                NoConnection.Visibility = Visibility.Visible;
+                connectionStatus(false);
+            }
+        }
+
+        private void buttonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshDataAsync();
+        }
     }
 }

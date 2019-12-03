@@ -6,12 +6,43 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ * Class: DataAccess
+ * Created By: Kevin Wang
+ * Purpose: Using the SQL connection string, update SQL by running commands to the SQL database
+ */
 namespace VehicleDetectionProject.Database
 {
     public class DataAccess
     {
-        //Used to query specific parking lot information 
+        /*
+         * Method: IsServerConnected()
+         * Input: None
+         * Output: None
+         * Purpose: Used to test to see if server connection is good
+         */
+        public bool IsServerConnected()
+        {
+            using (var l_oConnection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    l_oConnection.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /*
+         * Method: GetParkingLot
+         * Input: [string] lotName, [string] lotNum
+         * Output: [List] of Parking Lot
+         * Purpose: Used to get specific parking lot information defined by parameter
+         */
         public List<ParkingLot> GetParkingLot(string lotName, string lotNum)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
@@ -20,7 +51,12 @@ namespace VehicleDetectionProject.Database
             }
         }
 
-        //Used to query all parking lot information 
+        /*
+         * Method: GetParkingLot
+         * Input: None
+         * Output: [List] of Parking Lot
+         * Purpose: Used to get all parking lot information 
+         */
         public List<ParkingLot> GetAllParkingLot()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
@@ -36,8 +72,12 @@ namespace VehicleDetectionProject.Database
                 return null;
             }
         }
-
-        //Used to query all parking lot status messages information 
+        /*
+         * Method: GetStatusMessage
+         * Input: None
+         * Output: [List] of Parking Lot
+         * Purpose: Used to get all parking lot status messages information 
+         */
         public List<ParkingLot> GetStatusMessage()
         {
             using (IDbConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
@@ -54,6 +94,12 @@ namespace VehicleDetectionProject.Database
             }
         }
 
+        /*
+         * Method: UpdateCameraURL
+         * Input: [int] parkingLotID, [string] cameraURL
+         * Output: [List] of Parking Lot
+         * Purpose: Used to get all parking lot status messages information 
+         */
         //Used to update camera url for parking lot
         public void UpdateCameraURL(int parkingLotID, string cameraURL)
         {
@@ -76,9 +122,14 @@ namespace VehicleDetectionProject.Database
 
                 }
             }
-        }        
-        
-        //Used to update number of cars parked for parking lot
+        }
+
+        /*
+         * Method: LotInfoParkedCars
+         * Input: [int] parkingLotID, [int] carsParked
+         * Output: None
+         * Purpose: Used to update number of cars parked for a parking lot
+         */
         public void LotInfoParkedCars(int parkingLotID, int carsParked)
         {
             using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
@@ -102,7 +153,12 @@ namespace VehicleDetectionProject.Database
             }
         }
 
-        //Used to update max capacity and permit type for parking lot
+        /*
+         * Method: ParkingLotInfo
+         * Input: [int] parkingLotID, [int?] maxCapacity, [string] permitType
+         * Output: None
+         * Purpose: Used to update max capacity and permit type for parking lot
+         */
         public void ParkingLotInfo(int parkingLotID, int? maxCapacity, string permitType)
         {
             using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
@@ -127,7 +183,12 @@ namespace VehicleDetectionProject.Database
             }
         }
 
-        //Used to update status and message for parking lot	
+        /*
+         * Method: ParkingLotInfo
+         * Input: [int] parkingLotID, [char] status, [string] message
+         * Output: None
+         * Purpose: Used to update status and message for parking lot
+         */
         public void ParkingLotStatus(int parkingLotID, char status, string message)
         {
             using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))

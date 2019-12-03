@@ -22,8 +22,6 @@ namespace VehicleDetectionProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Change status, do [name.Foreground] for pack icons
-
         List<ParkingLot> parkingLots = new List<ParkingLot>();
 
         public MainWindow()

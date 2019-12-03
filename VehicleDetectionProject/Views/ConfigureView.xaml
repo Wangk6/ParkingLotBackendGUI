@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:VehicleDetectionProject.Views"
              mc:Ignorable="d" 
@@ -101,6 +102,11 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="426" Margin="32,31,0,0" VerticalAlignment="Top" Width="898">
+            <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="334,156,384,150" />
+            <fa:ImageAwesome x:Name="RefreshData" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="334,156,384,150" />
+            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="100" Height="66" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="388,30,0,330" ToolTip="Connection Failed"/>
         </Grid>
 
     </Grid>

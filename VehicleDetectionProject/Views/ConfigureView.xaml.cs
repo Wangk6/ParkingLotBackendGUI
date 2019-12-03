@@ -37,7 +37,7 @@ namespace VehicleDetectionProject.Views
 
         private void ConfigureView_Loaded(object sender, RoutedEventArgs e)
         {
-            FillInfo();
+            FillDataAsync();
         }
 
         //User selects a parking lot and displays existing camera URL
@@ -55,13 +55,13 @@ namespace VehicleDetectionProject.Views
             catch (ArgumentOutOfRangeException ex) { };
         }
 
-        private void FillInfo()
+        private void FillInfoAsync()
         {
-            RefreshData();
             try
             {
                 ParkingLot emptyMsg = new ParkingLot();
-                emptyMsg.Lot_Message = "";
+                emptyMsg.Lot_Message = ""; //Add empty message if user wants no lot message
+
                 //Set itemsource to list
                 comboBoxParkingLot.ItemsSource = pk;
                 listViewParkingLot.ItemsSource = pk;
@@ -94,95 +94,135 @@ namespace VehicleDetectionProject.Views
         //Empty
         private void Modify_Click(object sender, RoutedEventArgs e)
         {
-            //A parking lot is selected
-            if (comboBoxParkingLot.SelectedItem != null)
-            {
-                int index = comboBoxParkingLot.SelectedIndex + 1;
-
-                //If Camera Source is not Empty
-                if (textBoxCameraURL.Text.Trim() != "")
+            if (!NoConnection.IsVisible)
+            { //Connection is there
+              //A parking lot is selected
+                if (comboBoxParkingLot.SelectedItem != null)
                 {
-                    string cameraURL = textBoxCameraURL.Text.Trim();
-                    cvm.UpdateCameraURL(index, cameraURL);
-                }
+                    int index = comboBoxParkingLot.SelectedIndex + 1;
 
-                //Message
-                string status = comboBoxStatus.Text.ToString();
-
-                if (newMsgSelected == false) //Check for Combobox
-                {
-                    if (comboBoxStatus.SelectedItem != null) //If Status is not empty
+                    //If Camera Source is not Empty
+                    if (textBoxCameraURL.Text.Trim() != "")
                     {
-                        //Message is not empty, get message index*
-                        if (comboBoxMessage.Text.Trim() != "")
+                        string cameraURL = textBoxCameraURL.Text.Trim();
+                        cvm.UpdateCameraURL(index, cameraURL);
+                    }
+
+                    //Message
+                    string status = comboBoxStatus.Text.ToString();
+
+                    if (newMsgSelected == false) //Check for Combobox
+                    {
+                        if (comboBoxStatus.SelectedItem != null) //If Status is not empty
                         {
-                            cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
-                        }
-                        else //Message is empty, status is set	
-                        {
-                            cvm.ParkingLotStatus(index, status, null);
+                            //Message is not empty, get message index*
+                            if (comboBoxMessage.Text.Trim() != "")
+                            {
+                                cvm.ParkingLotStatus(index, status, comboBoxMessage.Text);
+                            }
+                            else //Message is empty, status is set	
+                            {
+                                cvm.ParkingLotStatus(index, status, null);
+                            }
                         }
                     }
-                }
-                else //Check for New Message
-                {
-                    string newMessage = textBoxMessage.Text.Trim();
-
-                    if (newMessage != "") //User wants to add a new message, we use the insert statement
+                    else //Check for New Message
                     {
-                        cvm.ParkingLotStatus(index, status, textBoxMessage.Text.Trim());
+                        string newMessage = textBoxMessage.Text.Trim();
+
+                        if (newMessage != "") //User wants to add a new message, we use the insert statement
+                        {
+                            cvm.ParkingLotStatus(index, status, textBoxMessage.Text.Trim());
+                        }
                     }
-                }
 
-                //If cars parked is not null
-                if (textBoxCarsParked.Text.Trim() != null)
-                {
-                    int num;
-                    int.TryParse(textBoxCarsParked.Text.Trim(), out num);
-                    cvm.LotInfoParkedCars(index, num);
-                }
+                    //If cars parked is not null
+                    if (textBoxCarsParked.Text.Trim() != null)
+                    {
+                        int num;
+                        int.TryParse(textBoxCarsParked.Text.Trim(), out num);
+                        cvm.LotInfoParkedCars(index, num);
+                    }
 
-                //If max capacity and Permit type is not null
-                if (textBoxMaxCapacity.Text.Trim() != null && comboBoxPermitType.SelectedItem != null)
-                {
-                    int capacity;
-                    int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
-                    cvm.ParkingLotInfo(index, capacity, comboBoxPermitType.Text);
+                    //If max capacity and Permit type is not null
+                    if (textBoxMaxCapacity.Text.Trim() != null && comboBoxPermitType.SelectedItem != null)
+                    {
+                        int capacity;
+                        int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
+                        cvm.ParkingLotInfo(index, capacity, comboBoxPermitType.Text);
+                    }
+                    //Else if max capacity is not null
+                    else if (textBoxMaxCapacity.Text.Trim() != null)
+                    {
+                        int capacity;
+                        int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
+                        cvm.ParkingLotInfo(index, capacity, null);
+                    }
+                    //Else permit type is not null and max capacity is null
+                    else if (comboBoxPermitType.SelectedItem != null)
+                    {
+                        cvm.ParkingLotInfo(index, null, comboBoxPermitType.Text);
+                    }
+                    RefreshDataAsync();
                 }
-                //Else if max capacity is not null
-                else if (textBoxMaxCapacity.Text.Trim() != null)
+                else //Display that no parking lot is selected message
                 {
-                    int capacity;
-                    int.TryParse(textBoxMaxCapacity.Text.Trim(), out capacity);
-                    cvm.ParkingLotInfo(index, capacity, null);
+                    NoParkingLotSelected.Visibility = Visibility.Visible;
                 }
-                //Else permit type is not null and max capacity is null
-                else if(comboBoxPermitType.SelectedItem != null)
-                {
-                    cvm.ParkingLotInfo(index, null, comboBoxPermitType.Text);
-                }
-                FillInfo();
-            }
-            else //Display that no parking lot is selected message
-            {
-                NoParkingLotSelected.Visibility = Visibility.Visible;
             }
         }
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            FillInfo();
+            RefreshDataAsync();
         }
 
-        private void RefreshData()
+        private async Task RefreshDataAsync()
         {
+            NoConnection.Visibility = Visibility.Hidden;
+            RefreshData.Visibility = Visibility.Visible;
+
             cvm = new ConfigureViewModel();
-            pk = cvm.GetParkingLots();
-            msg = cvm.GetStatusMessage();
+            bool status = await Task.Run(() => cvm.IsServerConnected()); //Wait to get response from server
+
+            if (status == true) //Connected
+            {
+                pk = cvm.GetParkingLots();
+                msg = await Task.Run(() => cvm.GetStatusMessage());
+                RefreshData.Visibility = Visibility.Hidden;
+                //await Task.Run(() => FillInfoAsync()); //Wait until info is filled
+            }
+            else //Not Connected
+            {
+                RefreshData.Visibility = Visibility.Hidden;
+                NoConnection.Visibility = Visibility.Visible;
+                Console.WriteLine("Not Connected");
+            }
+        }
+
+        private async Task FillDataAsync()
+        {
+            LoadingData.Visibility = Visibility.Visible; //Loading Data Picture - Visible
+
+            cvm = new ConfigureViewModel();
+            bool status = await Task.Run(() => cvm.IsServerConnected()); //Wait to get response from server
+
+            if (status == true) //Connected
+            {
+                pk = cvm.GetParkingLots();
+                msg = cvm.GetStatusMessage();
+                await Task.Run(() => FillInfoAsync()); //Wait until info is filled
+                LoadingData.Visibility = Visibility.Hidden; //Loading Data Picture - Hidden
+            }
+            else //Not Connected
+            {
+                NoConnection.Visibility = Visibility.Visible; //No Connection Picture - Visible
+                Console.WriteLine("Not Connected");
+                LoadingData.Visibility = Visibility.Hidden; //Loading Data Picture - Hidden
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            FillInfo();
             comboBoxMessage.Visibility = Visibility.Visible;
             textBoxMessage.Visibility = Visibility.Hidden;
             newMsgSelected = false;
