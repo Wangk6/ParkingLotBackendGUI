@@ -20,5 +20,10 @@ namespace VehicleDetectionProject.ViewModel
         {
             return db.GetAllParkingLot();
         }
+
+        public string ParkingLotStatusLongDisplay(char status)
+        {
+            return status == 'Y' ? "Open" : "Closed";
+        }
     }
 }

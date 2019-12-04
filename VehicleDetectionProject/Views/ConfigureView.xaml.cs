@@ -44,10 +44,11 @@ namespace VehicleDetectionProject.Views
         private void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
-            {
+            {        
                 int index = comboBoxParkingLot.SelectedIndex;
+                string statusMsg = cvm.ParkingLotStatusLongDisplay(pk[index].Is_Lot_Open);
                 //Status
-                comboBoxStatus.Text = (pk[index].Is_Lot_Open == 'Y') ? "Open" : "Closed";
+                comboBoxStatus.Text = statusMsg;
                 NoParkingLotSelected.Visibility = Visibility.Hidden;
                 comboBoxMessage.Visibility = Visibility.Visible;
                 textBoxMessage.Visibility = Visibility.Hidden;
@@ -61,11 +62,11 @@ namespace VehicleDetectionProject.Views
             {
                 ParkingLot emptyMsg = new ParkingLot();
                 emptyMsg.Lot_Message = ""; //Add empty message if user wants no lot message
-
+                msg.Insert(0, emptyMsg);
+                
                 //Set itemsource to list
                 comboBoxParkingLot.ItemsSource = pk;
                 listViewParkingLot.ItemsSource = pk;
-                msg.Insert(0, emptyMsg);
                 comboBoxMessage.ItemsSource = msg;
 
             }
@@ -216,8 +217,8 @@ namespace VehicleDetectionProject.Views
             else //Not Connected
             {
                 NoConnection.Visibility = Visibility.Visible; //No Connection Picture - Visible
-                Console.WriteLine("Not Connected");
                 LoadingData.Visibility = Visibility.Hidden; //Loading Data Picture - Hidden
+                Console.WriteLine("Not Connected");
             }
         }
 

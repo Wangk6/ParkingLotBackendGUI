@@ -43,8 +43,10 @@ namespace VehicleDetectionProject.Views
             try
             {
                 int index = comboBoxParkingLot.SelectedIndex;
+                string statusMsg = dvm.ParkingLotStatusLongDisplay(pk[index].Is_Lot_Open);
+
                 //Status
-                txtParkingLotStatus.Text = (pk[index].Is_Lot_Open == 'Y') ? "Open" : "Closed";
+                txtParkingLotStatus.Text = statusMsg;
                 //Max Capacity
                 txtParkingLotCurrentAvailable.Text = (pk[index].MaxCapacity - pk[index].Num_Of_Cars_Parked).ToString();
             }

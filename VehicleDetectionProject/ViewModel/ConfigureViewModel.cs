@@ -44,8 +44,18 @@ namespace VehicleDetectionProject.ViewModel
 
         public void ParkingLotStatus(int parkingLotID, string status, string message)
         {
-            char pStatus = status == "Open" ? 'Y' : 'N';
+            char pStatus = ParkingLotStatusShortDisplay(status);
             db.ParkingLotStatus(parkingLotID, pStatus, message);
+        }
+
+        public string ParkingLotStatusLongDisplay(char status)
+        {
+            return status == 'Y' ? "Open" : "Closed";
+        }
+
+        public char ParkingLotStatusShortDisplay(string status)
+        {
+            return status == "Open" ? 'Y' : 'N';
         }
     }
 }
