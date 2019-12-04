@@ -35,8 +35,8 @@
             </Border>
         </Grid>
 
-        <Grid Width="774" HorizontalAlignment="Left" Margin="10,542,0,0" Height="228" VerticalAlignment="Top" >
-            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" Margin="0,30,0,-30">
+        <Grid Width="774" HorizontalAlignment="Left" Margin="10,542,0,0" Height="228">
+            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55">
                         <TextBlock Text="Parking Lot" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="25" Height="35" Width="340"/>

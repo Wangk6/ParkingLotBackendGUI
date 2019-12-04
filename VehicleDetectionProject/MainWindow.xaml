@@ -20,6 +20,9 @@
         <DataTemplate x:Name="configureViewTemplate" DataType="{x:Type viewmodels:SourceViewModel}">
             <views:SourceView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="parkingDataViewTemplate" DataType="{x:Type viewmodels:ParkingDataViewModel}">
+            <views:ParkingDataView DataContext="{Binding}"/>
+        </DataTemplate>
         <Style x:Key="ListViewItemStyle1" TargetType="{x:Type ListViewItem}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
@@ -96,8 +99,14 @@
                     </ListViewItem>
                     <ListViewItem Height="100" Selected="SourceView_Clicked">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Camera" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
                             <TextBlock Background="Transparent" Text="Source" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="100" Selected="ParkingDataView_Clicked">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Width="35" Height="35" Foreground="White"></materialDesign:PackIcon>
+                            <TextBlock Background="Transparent" Text="History" VerticalAlignment="Center" FontSize="20" Foreground="Aquamarine" Margin="20 0"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>

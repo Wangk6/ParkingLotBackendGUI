@@ -58,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\ParkingDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SourceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,9 +85,13 @@
     <Compile Include="Database\DataAccess.cs" />
     <Compile Include="Model\ParkingLot.cs" />
     <Compile Include="Database\SQLConnection.cs" />
+    <Compile Include="ViewModel\ParkingDataViewModel.cs" />
     <Compile Include="ViewModel\SourceViewModel.cs" />
     <Compile Include="ViewModel\ConfigureViewModel.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
+    <Compile Include="Views\ParkingDataView.xaml.cs">
+      <DependentUpon>ParkingDataView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SourceView.xaml.cs">
       <DependentUpon>SourceView.xaml</DependentUpon>
     </Compile>

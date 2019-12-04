@@ -212,5 +212,60 @@ namespace VehicleDetectionProject.Database
                 }
             }
         }
+
+        /*
+         * Method: CarParked
+         * Input: [int] parkingLotID
+         * Output: None
+         * Purpose: Used to record a vehicle leaving which triggers the database to check if lots are full
+         */
+        public void CarParked(int parkingLotID)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("spCarParked", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@ParkingLotID", parkingLotID));
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+        /*
+         * Method: CarLeft
+         * Input: [int] parkingLotID
+         * Output: None
+         * Purpose: Used to record a vehicle leaving which triggers the database to check if lots are full
+         */
+        public void CarLeft(int parkingLotID)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("spCarLeft", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@ParkingLotID", parkingLotID));
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
     }
 }

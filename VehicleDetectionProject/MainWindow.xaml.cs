@@ -53,8 +53,13 @@ namespace VehicleDetectionProject
 
         private void ConfigureView_Clicked(object sender, RoutedEventArgs e)
         {
-            //Initialize 
             DataContext = new ConfigureViewModel();
+
+        }
+        private void ParkingDataView_Clicked(object sender, RoutedEventArgs e)
+        {
+            //Initialize 
+            DataContext = new ParkingDataViewModel();
 
         }
 
