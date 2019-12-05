@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VehicleDetectionProject.Database;
 using VehicleDetectionProject.ViewModel;
+using Carz;
+using System.Threading;
 
 namespace VehicleDetectionProject.Views
 {
@@ -26,6 +28,12 @@ namespace VehicleDetectionProject.Views
         List<ParkingLot> msg = new List<ParkingLot>();
         ConfigureViewModel cvm;
 
+        //Vehicle Detection
+        VideoInterpreter videoInterpreter;
+
+        private static string videoFeed = "C:\\Users\\BenZo\\source\\repos\\ParkingLotBackendGUI\\ParkingLotVideo-master\\FarmingdaleSmartParking2\\camera.mp4";
+        private static string cvFile = "C:\\Users\\BenZo\\source\\repos\\ParkingLotBackendGUI\\ParkingLotVideo-master\\FarmingdaleSmartParking2\\cars.xml";
+
         //Track of if new message is selected
         bool newMsgSelected = false;
 
@@ -34,18 +42,28 @@ namespace VehicleDetectionProject.Views
             InitializeComponent();
         }
 
+        public void CarDidEnter(VideoInterpreter vi)
+        {
+          cvm.CarEntered(comboBoxStatus.SelectedIndex);
+        }
+
 
         private void ConfigureView_Loaded(object sender, RoutedEventArgs e)
         {
             FillDataAsync();
+            videoInterpreter.setCarDidEnterDelegate(CarDidEnter);
+
         }
+
 
         //User selects a parking lot and displays existing camera URL
         private void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
-            {        
+            {
+                videoInterpreter = new VideoInterpreter(videoFeed, cvFile, TaskScheduler.Current);
                 int index = comboBoxParkingLot.SelectedIndex;
+                videoInterpreter.start();
                 string statusMsg = cvm.ParkingLotStatusLongDisplay(pk[index].Is_Lot_Open);
                 //Status
                 comboBoxStatus.Text = statusMsg;
@@ -188,7 +206,8 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connected
             {
                 pk = cvm.GetParkingLots();
-                msg = await Task.Run(() => cvm.GetStatusMessage());
+                //msg = await Task.Run(() => cvm.GetStatusMessage());
+                msg = cvm.GetStatusMessage();
                 FillInfoAsync();
                 RefreshData.Visibility = Visibility.Hidden;
             }

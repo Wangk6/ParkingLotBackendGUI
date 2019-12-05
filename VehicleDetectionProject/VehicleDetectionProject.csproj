@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FarmingdaleSmartParking2">
+      <HintPath>..\ParkingLotVideo-master\FarmingdaleSmartParking2\bin\Debug\FarmingdaleSmartParking2.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -152,6 +155,9 @@
   <ItemGroup>
     <PackageReference Include="Dapper">
       <Version>2.0.30</Version>
+    </PackageReference>
+    <PackageReference Include="EMGU.CV">
+      <Version>4.1.1.3497</Version>
     </PackageReference>
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
