@@ -83,6 +83,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Database\DataAccess.cs" />
+    <Compile Include="Model\LotActivity.cs" />
     <Compile Include="Model\ParkingLot.cs" />
     <Compile Include="Database\SQLConnection.cs" />
     <Compile Include="ViewModel\ParkingDataViewModel.cs" />

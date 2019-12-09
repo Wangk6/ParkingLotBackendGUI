@@ -21,9 +21,14 @@ namespace VehicleDetectionProject.ViewModel
             return db.GetAllParkingLot();
         }
 
-        public void UpdateCameraURL(int parkingLotID, string cameraURL)
+       public List<LotActivity> GetLotRecordDate(int parkingLot, string date)
         {
-            db.UpdateCameraURL(parkingLotID, cameraURL);
+            return db.GetLotRecordDate(parkingLot, date);
+        }
+
+       public List<LotActivity> GetAllParkingRecords()
+        {
+            return db.GetAllParkingRecords();
         }
     }
 }

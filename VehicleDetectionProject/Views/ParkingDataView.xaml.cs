@@ -23,6 +23,7 @@ namespace VehicleDetectionProject.Views
     public partial class ParkingDataView : UserControl
     {
         List<ParkingLot> pk = new List<ParkingLot>();
+        List<LotActivity> la = new List<LotActivity>();
         ParkingDataViewModel svm;
         public ParkingDataView()
         {
@@ -41,9 +42,9 @@ namespace VehicleDetectionProject.Views
                 try
                 {
                     int index = comboBoxParkingLot.SelectedIndex + 1;
-                    string url = textBoxCameraURL.Text.Trim();
+                    string date = textBoxDate.Text.Trim();
                     //Update parking lots camera url
-                    svm.UpdateCameraURL(index, url);
+                    la = svm.GetLotRecordDate(index, date);
                     RefreshDataASync();
                 }
                 catch (ArgumentOutOfRangeException ex) { };
@@ -58,7 +59,7 @@ namespace VehicleDetectionProject.Views
             {
                 //Add to comboBoxParkingLot combobox
                 comboBoxParkingLot.ItemsSource = pk;
-                listViewParkingLot.ItemsSource = pk;
+                listViewParkingLot.ItemsSource = la;
             }
             catch(Exception e)
             {
@@ -82,6 +83,8 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Established
             {
                 pk = svm.GetParkingLots();
+                la = svm.GetAllParkingRecords();
+
                 FillInfoASync();
                 LoadingData.Visibility = Visibility.Hidden;
             }
@@ -113,6 +116,20 @@ namespace VehicleDetectionProject.Views
                 RefreshDataIcon.Visibility = Visibility.Hidden;
                 Console.WriteLine("Not Connected");
             }
+        }
+
+        //Select Date Click
+        private void buttonAddDate_Click(object sender, RoutedEventArgs e)
+        {
+            //Set Calendar date to Date
+            textBoxDate.Text = CalendarView.SelectedDate.Value.Date.ToShortDateString();
+            //Hide Calendar
+            CalendarGrid.Visibility = Visibility.Hidden;
+        }
+
+        private void Click_Date(object sender, MouseButtonEventArgs e)
+        {
+            CalendarGrid.Visibility = Visibility.Visible;
         }
     }
 }

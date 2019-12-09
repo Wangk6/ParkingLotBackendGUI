@@ -10,11 +10,7 @@
              Background="#222831"
              d:DesignHeight="860" d:DesignWidth="1250" Loaded="ParkingDataView_Loaded">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="321*"/>
-            <RowDefinition Height="539*"/>
-        </Grid.RowDefinitions>
-        <Grid Margin="262,20,252,0">
+        <Grid Margin="244,20,248,494">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" HorizontalAlignment="Center" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
@@ -28,7 +24,7 @@
                     <StackPanel Orientation="Horizontal" Height="75" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="DateRange" Height="35" Width="35" Margin="10 20 10 0" Foreground="White"/>
                         <TextBlock Text="Date" FontWeight="Bold" Foreground="#00fff5" FontSize="25" VerticalAlignment="Center" />
-                        <TextBox x:Name="textBoxCameraURL" Margin="100,5" FontSize="25" Height="45" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Width="304" Text="{Binding SelectedItem.CameraURL, ElementName=comboBoxParkingLot}"/>
+                        <TextBox x:Name="textBoxDate" Margin="100,5" FontSize="25" Height="45" IsReadOnly="True" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Width="304" PreviewMouseDown="Click_Date"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="65" HorizontalAlignment="Center">
                         <Button x:Name="buttonAddCamera" BorderBrush="Wheat"  BorderThickness="2" Background="#FF06BBBB" Foreground="White" Content="Confirm" FontSize="25" Margin="200,8,85,7" Width="240" Height="50" Click="buttonAddCamera_Click"/>
@@ -40,19 +36,39 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Margin="262,45,252,134" Grid.Row="1">
+        <ListView x:Name="listViewParkingLot" Margin="262,395,265,34">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Activity Time" Width="Auto" DisplayMemberBinding="{Binding LotName}"/>
-                    <GridViewColumn Header="Car Parked" Width="Auto" DisplayMemberBinding="{Binding LotNumber}"/>
-                    <GridViewColumn Header="Parking Lot ID" Width="Auto" DisplayMemberBinding="{Binding CameraURL}"/>
+                    <GridViewColumn Header="Activity Time" Width="Auto" DisplayMemberBinding="{Binding LotActivityTime}"/>
+                    <GridViewColumn Header="Car Parked" Width="Auto" DisplayMemberBinding="{Binding CarParked}"/>
+                    <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding LotName}"/>
+                    <GridViewColumn Header="Number" Width="Auto" DisplayMemberBinding="{Binding LotNumber}"/>
+
                 </GridView>
             </ListView.View>
         </ListView>
         <Grid HorizontalAlignment="Left" Height="235" Margin="315,41,0,0" VerticalAlignment="Top" Width="670">
-            <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="372,34,400,112" />
-            <fa:ImageAwesome x:Name="RefreshDataIcon" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="372,34,400,112" />
-            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="178,38,0,147" ToolTip="Connection Failed"/>
+            <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="204,38,312,108" />
+            <fa:ImageAwesome x:Name="RefreshDataIcon" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="204,38,312,108" RenderTransformOrigin="0.5,0.5" >
+                <fa:ImageAwesome.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </fa:ImageAwesome.RenderTransform>
+            </fa:ImageAwesome>
+            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="430,48,0,137" ToolTip="Connection Failed"/>
         </Grid>
+
+        <Grid x:Name="CalendarGrid" Visibility="Hidden" Margin="356,218,224,140">
+            <Viewbox Margin="0,0,10,0" Height="352" VerticalAlignment="Top">
+                <Calendar x:Name="CalendarView" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+
+            </Viewbox>
+            <Button x:Name="buttonAddDate" BorderBrush="Wheat"  BorderThickness="2" Background="#FF06BBBB" Foreground="White" Content="Select Date" FontSize="25" Margin="219,0,203,59" Click="buttonAddDate_Click" Height="86" VerticalAlignment="Bottom"/>
+        </Grid>
+
     </Grid>
 </UserControl>

@@ -214,6 +214,55 @@ namespace VehicleDetectionProject.Database
         }
 
         /*
+         * Method: GetAllParkingRecords
+         * Input: None
+         * Output: [List] of Parking Lot
+         * Purpose: Used to get all parking lot information 
+         */
+        public List<LotActivity> GetAllParkingRecords()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    return connection.Query<LotActivity>($"SELECT * FROM viewLotRecords").ToList();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                return null;
+            }
+        }
+
+        /*
+         * Method: GetLotRecordDate
+         * Input: None
+         * Output: [List] of Parking Lot
+         * Purpose: Used to get all parking lot information 
+         */
+        public List<LotActivity> GetLotRecordDate (int parkingLotID, string date)
+        {
+            using (SqlConnection connection = new SqlConnection(SQLConnection.ConnString("ParkingLotDB")))
+            {
+                try
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@ParkingLotID", parkingLotID);
+                    p.Add("@Date", date);
+                    var lotActivities = connection.Query<LotActivity>("spGetRecordOnDate", p,
+                            commandType: CommandType.StoredProcedure).ToList();
+                    return lotActivities;
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("Exception: " + ex);
+                }
+                return null;
+            }
+        }
+
+        /*
          * Method: CarParked
          * Input: [int] parkingLotID
          * Output: None

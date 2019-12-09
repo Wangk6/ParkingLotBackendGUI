@@ -67,7 +67,7 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Margin="118,576,146,0" ItemsSource="{Binding pk}" Height="284" VerticalAlignment="Top">
+        <ListView x:Name="listViewParkingLot" Margin="116,566,148,0" ItemsSource="{Binding pk}" Height="284" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}">
@@ -103,10 +103,10 @@
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="426" Margin="193,36,0,0" VerticalAlignment="Top" Width="898">
-            <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="334,156,384,150" />
-            <fa:ImageAwesome x:Name="RefreshData" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="334,156,384,150" />
-            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="90" Height="56" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="0,36,0,334" ToolTip="Connection Failed"/>
+        <Grid HorizontalAlignment="Left" Height="426" Margin="141,38,0,0" VerticalAlignment="Top" Width="898">
+            <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="False" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="376,174,342,132" />
+            <fa:ImageAwesome x:Name="RefreshData" Icon="Refresh" Spin="False" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="376,174,342,132" />
+            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="90" Height="56" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="0,34,0,336" ToolTip="Connection Failed"/>
         </Grid>
 
     </Grid>
