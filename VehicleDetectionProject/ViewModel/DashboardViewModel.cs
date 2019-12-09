@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using VehicleDetectionProject.Database;
 
 namespace VehicleDetectionProject.ViewModel
@@ -24,6 +24,16 @@ namespace VehicleDetectionProject.ViewModel
         public string ParkingLotStatusLongDisplay(char status)
         {
             return status == 'Y' ? "Open" : "Closed";
+        }
+
+        public void CarDidEnter(int parkingID)
+        {
+            db.CarParked(parkingID);
+        }
+
+        public void CarDidLeave(int parkingID)
+        {
+            db.CarLeft(parkingID);
         }
     }
 }

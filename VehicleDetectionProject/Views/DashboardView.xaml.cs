@@ -12,10 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using VehicleDetectionProject.Database;
 using VehicleDetectionProject.ViewModel;
 using MaterialDesignThemes.Wpf;
 using System.Collections.ObjectModel;
+using Carz;
 
 namespace VehicleDetectionProject.Views
 {
@@ -26,8 +28,13 @@ namespace VehicleDetectionProject.Views
     {
         List<ParkingLot> pk = new List<ParkingLot>();
         DashboardViewModel dvm;
+        Carz.VideoInterpreter vi;
 
-        public DashboardView()
+
+        private static string videoFeed = "C:\\Users\\mcdar\\source\\repos\\ParkingLotBackendGUI2\\ParkingLotVideo-master\\FarmingdaleSmartParking2\\camera.mp4";
+        private static string cvFile = "C:\\Users\\mcdar\\source\\repos\\ParkingLotBackendGUI2\\ParkingLotVideo-master\\FarmingdaleSmartParking2\\cars.xml";
+
+    public DashboardView()
         {
             InitializeComponent();
         }
@@ -38,20 +45,30 @@ namespace VehicleDetectionProject.Views
         }
 
         //User selects a parking lot and displays existing camera URL
-        private void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                int index = comboBoxParkingLot.SelectedIndex;
-                string statusMsg = dvm.ParkingLotStatusLongDisplay(pk[index].Is_Lot_Open);
-
-                //Status
-                txtParkingLotStatus.Text = statusMsg;
-                //Max Capacity
-                txtParkingLotCurrentAvailable.Text = (pk[index].MaxCapacity - pk[index].Num_Of_Cars_Parked).ToString();
+                if (comboBoxParkingLot.SelectedIndex != -1)
+                {
+                    int index = comboBoxParkingLot.SelectedIndex;
+                    VideoDetection();
+                    //Status
+                    string statusMsg = dvm.ParkingLotStatusLongDisplay(pk[index].Is_Lot_Open);
+                    txtParkingLotStatus.Text = statusMsg;
+                    //Parked
+                    txtParkingLotCurrentParked.Text = pk[index].Num_Of_Cars_Parked.ToString();
+                    //Max Capacity
+                    txtParkingLotCurrentAvailable.Text = (pk[index].MaxCapacity - pk[index].Num_Of_Cars_Parked).ToString();
+                }
+                else
+                {
+                    mediaElementPlayer.Source = null;
+                }
             }
-            catch (Exception ex) {
-
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + e);
             };
         }
 
@@ -62,7 +79,7 @@ namespace VehicleDetectionProject.Views
                 ClearInfo();
                 comboBoxParkingLot.ItemsSource = pk;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }
@@ -79,7 +96,7 @@ namespace VehicleDetectionProject.Views
         private void connectionStatus(bool status)
         {
             //On
-            if(status == true)
+            if (status == true)
             {
                 connectionStatusIcon.Foreground = Brushes.Green;
             }
@@ -92,7 +109,7 @@ namespace VehicleDetectionProject.Views
         private void streamStatus(bool status)
         {
             //On
-            if(status == true)
+            if (status == true)
             {
                 streamStatusIcon.Foreground = Brushes.Green;
             }
@@ -105,7 +122,7 @@ namespace VehicleDetectionProject.Views
         private void trackingStatus(bool status)
         {
             //On
-            if(status == true)
+            if (status == true)
             {
                 trackingStatusIcon.Foreground = Brushes.Green;
             }
@@ -126,7 +143,7 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Found
             {
                 pk = await Task.Run(() => dvm.GetParkingLots());
-                FillInfo();
+                //FillInfo();
                 connectionStatus(true);
                 RefreshDataIcon.Visibility = Visibility.Hidden;
             }
@@ -148,7 +165,7 @@ namespace VehicleDetectionProject.Views
 
             if (status == true) //Connection Found
             {
-                pk = dvm.GetParkingLots();
+                pk = await Task.Run(() => dvm.GetParkingLots());
                 FillInfo();
                 connectionStatus(true);
                 LoadingData.Visibility = Visibility.Hidden;
@@ -165,5 +182,93 @@ namespace VehicleDetectionProject.Views
         {
             RefreshDataAsync();
         }
+
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            BindingOperations.GetBindingExpressionBase((ComboBox)sender, ComboBox.ItemsSourceProperty).UpdateTarget();
+        }
+
+
+        public void VideoDetection()
+        {
+            if (vi != null)
+            {
+                vi.stop();
+            }
+            if (mediaElementPlayer.Source != null)
+            {
+                mediaElementPlayer.Source = null;
+            }
+
+            mediaElementPlayer.Source = new Uri(videoFeed);
+            vi = new VideoInterpreter(videoFeed, cvFile, Dispatcher.CurrentDispatcher);
+            //If tracking and streaming
+            bool working = false;
+            working = (vi != null) ? working = true : working = false;
+            trackingStatus(working);
+            working = (mediaElementPlayer != null) ? working = true : working = true;
+            streamStatus(working);
+            vi.setCarDidEnterDelegate(CarDidEnter);
+            vi.setCarDidLeaveDelegate(CarDidLeave);
+            vi.setCarProcessingDone(CarProcessingDone);
+            vi.start();
+        }
+
+        public void CarDidEnter(VideoInterpreter vi)
+        {
+            dvm.CarDidEnter(comboBoxParkingLot.SelectedIndex + 1);
+            CarParked();
+
+            //System.Diagnostics.Debug.WriteLine("CAR DID ENTER CALLED");
+        }
+
+        public void CarDidLeave(VideoInterpreter vi)
+        {
+            dvm.CarDidLeave(comboBoxParkingLot.SelectedIndex + 1);
+            CarLeft();
+
+            //System.Diagnostics.Debug.WriteLine("CAR DID LEAVE CALLED");
+        }
+
+        public void CarParked()
+        {
+            int index = comboBoxParkingLot.SelectedIndex;
+            if (index > -1)
+            {
+                //Used to increment/decrement. Usually would prefer to pull data from db but this saves queries
+                int myCount = pk[index].Num_Of_Cars_Parked + 1;
+                pk[index].Num_Of_Cars_Parked = myCount;
+                Console.WriteLine("Parked: " + myCount);
+                txtParkingLotCurrentParked.Text = myCount.ToString();
+                myCount = int.Parse(txtParkingLotCurrentAvailable.Text) - 1;
+                txtParkingLotCurrentAvailable.Text = myCount.ToString();
+                Console.WriteLine("Available: " + myCount + "\n\n");
+            }
+        }
+        public void CarLeft()
+        {
+            int index = comboBoxParkingLot.SelectedIndex;
+            if (index > -1)
+            {
+                //Used to increment/decrement. Usually would prefer to pull data from db but this saves queries
+                int myCount = pk[index].Num_Of_Cars_Parked - 1;
+                pk[index].Num_Of_Cars_Parked = myCount;
+                Console.WriteLine("Left: " + myCount);
+                txtParkingLotCurrentParked.Text = myCount.ToString();
+                myCount = int.Parse(txtParkingLotCurrentAvailable.Text) + 1;
+                txtParkingLotCurrentAvailable.Text = myCount.ToString();
+                Console.WriteLine("Available: " + myCount + "\n\n");
+            }
+        }
+
+        //When video is done playing
+        public void CarProcessingDone(VideoInterpreter vi)
+        {
+            streamStatus(false);
+            trackingStatus(false);
+            mediaElementPlayer.Source = null;
+            System.Diagnostics.Debug.WriteLine("CarPricessingDone Called");
+        }
+
     }
 }
