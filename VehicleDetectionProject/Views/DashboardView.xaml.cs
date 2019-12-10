@@ -188,6 +188,11 @@ namespace VehicleDetectionProject.Views
             BindingOperations.GetBindingExpressionBase((ComboBox)sender, ComboBox.ItemsSourceProperty).UpdateTarget();
         }
 
+        void Play(Object o, EventArgs e)
+        {
+            vi.start();
+
+        }
 
         public void VideoDetection()
         {
@@ -199,8 +204,6 @@ namespace VehicleDetectionProject.Views
             {
                 mediaElementPlayer.Source = null;
             }
-
-            mediaElementPlayer.Source = new Uri(videoFeed);
             vi = new VideoInterpreter(videoFeed, cvFile, Dispatcher.CurrentDispatcher);
             //If tracking and streaming
             bool working = false;
@@ -211,8 +214,15 @@ namespace VehicleDetectionProject.Views
             vi.setCarDidEnterDelegate(CarDidEnter);
             vi.setCarDidLeaveDelegate(CarDidLeave);
             vi.setCarProcessingDone(CarProcessingDone);
-            vi.start();
+            vi.setShowWindow(true);
+            vi.setfps(20);
+            mediaElementPlayer.MediaOpened += Play;
+            mediaElementPlayer.Source = new Uri(videoFeed);
+
+            //vi.start();
         }
+
+
 
         public void CarDidEnter(VideoInterpreter vi)
         {
