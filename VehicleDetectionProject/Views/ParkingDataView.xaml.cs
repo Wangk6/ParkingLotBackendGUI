@@ -73,7 +73,14 @@ namespace VehicleDetectionProject.Views
         private void buttonAddDate_Click(object sender, RoutedEventArgs e)
         {
             //Set Calendar date to Date
-            textBoxDate.Text = CalendarView.SelectedDate.Value.Date.ToShortDateString();
+            try
+            {
+                textBoxDate.Text = CalendarView.SelectedDate.Value.Date.ToShortDateString();
+            }
+            catch(Exception)
+            {
+                //Text empty
+            }
             //Hide Calendar
             CalendarGrid.Visibility = Visibility.Hidden;
         }

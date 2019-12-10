@@ -160,6 +160,8 @@ namespace Carz
                                     var w = rect.Width;
                                     var h = rect.Height;
                                     Emgu.CV.CvInvoke.Rectangle(iMatrix, new Rectangle(x, y, w, h), new Emgu.CV.Structure.MCvScalar(50));
+
+                                
                                 }
                                 //increase the number of cars in frame for each iteration
                                 carsInFrame++;
