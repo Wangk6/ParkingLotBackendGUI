@@ -17,6 +17,11 @@ using VehicleDetectionProject.ViewModel;
 
 namespace VehicleDetectionProject.Views
 {
+    /*
+    * Class: ParkingDataView
+    * Created By: Kevin Wang
+    * Purpose: Controls for the ParkingDataView View Tab
+    */
     /// <summary>
     /// Interaction logic for Configure.xaml
     /// </summary>
@@ -25,6 +30,7 @@ namespace VehicleDetectionProject.Views
         List<ParkingLot> pk = new List<ParkingLot>();
         List<LotActivity> la = new List<LotActivity>();
         ParkingDataViewModel svm;
+
         public ParkingDataView()
         {
             InitializeComponent();
@@ -35,7 +41,14 @@ namespace VehicleDetectionProject.Views
             FillDataAsync();
         }
 
-        private void buttonAddCamera_Click(object sender, RoutedEventArgs e)
+        #region View Controller
+        /*
+         * Method: buttonViewHistory_Click()
+         * Input: User Clicks Confirm
+         * Output: None -
+         * Purpose: Gets the history of selected date by user
+         */
+        private void buttonViewHistory_Click(object sender, RoutedEventArgs e)
         {
             if (!NoConnection.IsVisible) //There is a connection
             {
@@ -51,9 +64,52 @@ namespace VehicleDetectionProject.Views
             }
         }
 
-        //Add Refresh when inserting/updating camera url to database is complete
-        //Clears the information previously and adds up-to-date data
-        private void FillInfoASync()
+        /*
+         * Method: buttonAddDate_Click()
+         * Input: User Clicks Date Confirm
+         * Output: None -
+         * Purpose: Gets the selected calendar date, puts in textbox and closes calendar view
+         */
+        private void buttonAddDate_Click(object sender, RoutedEventArgs e)
+        {
+            //Set Calendar date to Date
+            textBoxDate.Text = CalendarView.SelectedDate.Value.Date.ToShortDateString();
+            //Hide Calendar
+            CalendarGrid.Visibility = Visibility.Hidden;
+        }
+
+        /*
+         * Method: Click_Date()
+         * Input: User Clicks Date textBox
+         * Output: None -
+         * Purpose: Opens up a Calendar for user to click and select a date
+         */
+        private void Click_Date(object sender, MouseButtonEventArgs e)
+        {
+            CalendarGrid.Visibility = Visibility.Visible;
+        }
+
+        /*
+         * Method: buttonRefresh_Click()
+         * Input: User clicks Refresh Button
+         * Output: None -
+         * Purpose: Calls RefreshDataASync() to get updated database information
+         */
+        private void buttonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshDataASync();
+        }
+        #endregion
+
+        #region Getting/Setting/Clearing DB Data
+        /*
+         * Method: FillInfo()
+         * Input: None
+         * Output: None
+         * Purpose: Add Refresh when inserting/updating camera url to database is complete
+         *          Clears the information previously and adds up-to-date data
+         */
+        private void FillInfo()
         {
             try
             {
@@ -61,17 +117,19 @@ namespace VehicleDetectionProject.Views
                 comboBoxParkingLot.ItemsSource = pk;
                 listViewParkingLot.ItemsSource = la;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }
         }
 
-        private void buttonRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            RefreshDataASync();
-        }
-
+        /*
+         * Method: FillDataAsync()
+         * Input: User Clicks to update database
+         * Output: None
+         * Purpose: Checks for a connection before parsing the parking lots and filling info
+         *          while sending user information on the pending status of refreshing the data
+         */
         private async Task FillDataAsync()
         {
             NoConnection.Visibility = Visibility.Hidden;
@@ -85,7 +143,7 @@ namespace VehicleDetectionProject.Views
                 pk = svm.GetParkingLots();
                 la = svm.GetAllParkingRecords();
 
-                FillInfoASync();
+                FillInfo();
                 LoadingData.Visibility = Visibility.Hidden;
             }
             else //No Connection
@@ -96,6 +154,13 @@ namespace VehicleDetectionProject.Views
             }
         }
 
+        /*
+         * Method: RefreshDataASync()
+         * Input: User Clicks Refresh Database button
+         * Output: None
+         * Purpose: Checks for a connection before parsing the parking lots and refreshing info
+         *          while sending user information on the pending status of refreshing the data
+         */
         private async Task RefreshDataASync()
         {
             NoConnection.Visibility = Visibility.Hidden;
@@ -107,7 +172,7 @@ namespace VehicleDetectionProject.Views
             if (status == true) //Connection Established
             {
                 pk = await Task.Run(() => svm.GetParkingLots());
-                FillInfoASync();
+                FillInfo();
                 RefreshDataIcon.Visibility = Visibility.Hidden;
             }
             else //No Connection
@@ -117,19 +182,6 @@ namespace VehicleDetectionProject.Views
                 Console.WriteLine("Not Connected");
             }
         }
-
-        //Select Date Click
-        private void buttonAddDate_Click(object sender, RoutedEventArgs e)
-        {
-            //Set Calendar date to Date
-            textBoxDate.Text = CalendarView.SelectedDate.Value.Date.ToShortDateString();
-            //Hide Calendar
-            CalendarGrid.Visibility = Visibility.Hidden;
-        }
-
-        private void Click_Date(object sender, MouseButtonEventArgs e)
-        {
-            CalendarGrid.Visibility = Visibility.Visible;
-        }
+        #endregion
     }
 }

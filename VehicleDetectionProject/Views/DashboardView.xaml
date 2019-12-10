@@ -106,5 +106,9 @@
                 <materialDesign:PackIcon Kind="DatabaseRefresh" Width="50" Height="50" Foreground="White"/>
             </Button>
         </Grid>
+        <Button x:Name="buttonVideoSample" Content="Load Video Sample" HorizontalAlignment="Left" Margin="940,662,0,0" VerticalAlignment="Top" Width="122" Height="48" Click="buttonVideoSample_Click" />
+        <Button x:Name="buttonVehicleDetection" Content="Load Vehicle Detection" HorizontalAlignment="Left" Margin="940,745,0,0" VerticalAlignment="Top" Width="122" Height="48" Click="buttonVehicleDetection_Click"/>
+        <materialDesign:PackIcon x:Name="vehicleSampleStatus" Kind="Circle" Width="35" Height="35"  Margin="1086,675,0,0"  Foreground="Red"/>
+        <materialDesign:PackIcon x:Name="vehicleDetectionStatus" Kind="Circle" Width="35" Height="35"  Margin="1086,758,0,0"  Foreground="Red"/>
     </Grid>
 </UserControl>

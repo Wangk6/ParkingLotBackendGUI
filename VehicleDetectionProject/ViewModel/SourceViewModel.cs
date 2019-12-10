@@ -7,6 +7,12 @@ using VehicleDetectionProject.Database;
 
 namespace VehicleDetectionProject.ViewModel
 {
+    /*
+    * Class: SourceViewModel
+    * Created By: Kevin Wang
+    * Purpose: ViewModel to format and access data
+    * [Can connect datacontext and implement Observable collection in the future]
+    */
     public class SourceViewModel
     {
         DataAccess db = new DataAccess();

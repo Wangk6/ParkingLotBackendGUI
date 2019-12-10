@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace VehicleDetectionProject.Database
 {
+    /*
+    * Class: LotActivity
+    * Created By: Kevin Wang
+    * Purpose: Model utilizing Dapper to match column names in database
+    */
     public class ParkingLot
     {
         public int ParkingLotID { get; set; }

@@ -4,8 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace VehicleDetectionProject.Database
 {
+    /*
+    * Class: LotActivity
+    * Created By: Kevin Wang
+    * Purpose: Model utilizing Dapper to match column names in database
+    */
     public class LotActivity
     {
         public string LotActivityTime { get; set; }

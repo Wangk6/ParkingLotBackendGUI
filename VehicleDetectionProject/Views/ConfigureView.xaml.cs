@@ -17,6 +17,11 @@ using VehicleDetectionProject.ViewModel;
 
 namespace VehicleDetectionProject.Views
 {
+    /*
+    * Class: ConfigureView
+    * Created By: Kevin Wang
+    * Purpose: Controls for the Configure View Tab
+    */
     /// <summary>
     /// Interaction logic for Controls.xaml
     /// </summary>
@@ -40,7 +45,13 @@ namespace VehicleDetectionProject.Views
             FillDataAsync();
         }
 
-        //User selects a parking lot and displays existing camera URL
+        #region View Controller
+        /*
+         * Method: ParkingLot_SelectionChanged()
+         * Input: User Changes Parking Lot
+         * Output: None -
+         * Purpose: User selects a parking lot and displays current info
+         */
         private void ParkingLot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -56,26 +67,12 @@ namespace VehicleDetectionProject.Views
             catch (ArgumentOutOfRangeException ex) { };
         }
 
-        private void FillInfoAsync()
-        {
-            try
-            {
-                ParkingLot emptyMsg = new ParkingLot();
-                emptyMsg.Lot_Message = ""; //Add empty message if user wants no lot message
-                msg.Insert(0, emptyMsg);
-                
-                //Set itemsource to list
-                comboBoxParkingLot.ItemsSource = pk;
-                listViewParkingLot.ItemsSource = pk;
-                comboBoxMessage.ItemsSource = msg;
-
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
+        /*
+         * Method: AddNewMessage_Selected()
+         * Input: User clicks New Message Button
+         * Output: None -
+         * Purpose: Enabled textbox for user to enter custom message
+         */
         private void AddNewMessage_Selected(object sender, RoutedEventArgs e)
         {
             if (newMsgSelected == false) //New Message Box Display
@@ -92,7 +89,12 @@ namespace VehicleDetectionProject.Views
             }
         }
 
-        //Empty
+        /*
+         * Method: Modify_Click()
+         * Input: User clicks Confirm Button
+         * Output: None -
+         * Purpose: Submits and updates the parking lot based on values set by user
+         */
         private void Modify_Click(object sender, RoutedEventArgs e)
         {
             if (!NoConnection.IsVisible)
@@ -172,11 +174,68 @@ namespace VehicleDetectionProject.Views
                 }
             }
         }
+
+        /*
+         * Method: Cancel_Click()
+         * Input: User clicks Cancel Button
+         * Output: None -
+         * Purpose: Clears parking lot displayed on screen
+         */
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            comboBoxMessage.Visibility = Visibility.Visible;
+            textBoxMessage.Visibility = Visibility.Hidden;
+            newMsgSelected = false;
+            textBoxMessage.Text = null;
+        }
+
+        /*
+         * Method: buttonRefresh_Click()
+         * Input: User clicks Refresh Button
+         * Output: None -
+         * Purpose: Calls RefreshDataASync() to get updated database information
+         */
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
             RefreshDataAsync();
         }
+        #endregion
 
+        #region Getting/Setting/Clearing DB Data
+        /*
+         * Method: FillInfo()
+         * Input: None
+         * Output: None
+         * Purpose: Add Refresh when inserting/updating camera url to database is complete
+         *          Clears the information previously and adds up-to-date data
+         */
+        private void FillInfo()
+        {
+            try
+            {
+                ParkingLot emptyMsg = new ParkingLot();
+                emptyMsg.Lot_Message = ""; //Add empty message if user wants no lot message
+                msg.Insert(0, emptyMsg);
+
+                //Set itemsource to list
+                comboBoxParkingLot.ItemsSource = pk;
+                listViewParkingLot.ItemsSource = pk;
+                comboBoxMessage.ItemsSource = msg;
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        /*
+         * Method: RefreshDataASync()
+         * Input: User Clicks Refresh Database button
+         * Output: None
+         * Purpose: Checks for a connection before parsing the parking lots and refreshing info
+         *          while sending user information on the pending status of refreshing the data
+         */
         private async Task RefreshDataAsync()
         {
             NoConnection.Visibility = Visibility.Hidden;
@@ -189,7 +248,7 @@ namespace VehicleDetectionProject.Views
             {
                 pk = cvm.GetParkingLots();
                 msg = await Task.Run(() => cvm.GetStatusMessage());
-                FillInfoAsync();
+                FillInfo();
                 RefreshData.Visibility = Visibility.Hidden;
             }
             else //Not Connected
@@ -200,6 +259,13 @@ namespace VehicleDetectionProject.Views
             }
         }
 
+        /*
+         * Method: FillDataAsync()
+         * Input: User Clicks to update database
+         * Output: None
+         * Purpose: Checks for a connection before parsing the parking lots and filling info
+         *          while sending user information on the pending status of refreshing the data
+         */
         private async Task FillDataAsync()
         {
             LoadingData.Visibility = Visibility.Visible; //Loading Data Picture - Visible
@@ -211,7 +277,7 @@ namespace VehicleDetectionProject.Views
             {
                 pk = cvm.GetParkingLots();
                 msg = cvm.GetStatusMessage();
-                FillInfoAsync(); //Wait until info is filled
+                FillInfo(); //Wait until info is filled
                 LoadingData.Visibility = Visibility.Hidden; //Loading Data Picture - Hidden
             }
             else //Not Connected
@@ -221,13 +287,6 @@ namespace VehicleDetectionProject.Views
                 Console.WriteLine("Not Connected");
             }
         }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            comboBoxMessage.Visibility = Visibility.Visible;
-            textBoxMessage.Visibility = Visibility.Hidden;
-            newMsgSelected = false;
-            textBoxMessage.Text = null;
-        }
+        #endregion
     }
 }

@@ -8,6 +8,12 @@ using MaterialDesignThemes.Wpf;
 
 namespace VehicleDetectionProject.ViewModel
 {
+    /*
+    * Class: ConfigureViewModel
+    * Created By: Kevin Wang
+    * Purpose: ViewModel to format and access data
+    * [Can connect datacontext and implement Observable collection in the future]
+    */
     public class ConfigureViewModel
     {
         DataAccess db = new DataAccess();

@@ -27,7 +27,7 @@
                         <TextBox x:Name="textBoxDate" Margin="100,5" FontSize="25" Height="45" IsReadOnly="True" VerticalContentAlignment="Bottom" TextWrapping="Wrap" Width="304" PreviewMouseDown="Click_Date"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="65" HorizontalAlignment="Center">
-                        <Button x:Name="buttonAddCamera" BorderBrush="Wheat"  BorderThickness="2" Background="#FF06BBBB" Foreground="White" Content="Confirm" FontSize="25" Margin="200,8,85,7" Width="240" Height="50" Click="buttonAddCamera_Click"/>
+                        <Button x:Name="buttonViewHistory" BorderBrush="Wheat"  BorderThickness="2" Background="#FF06BBBB" Foreground="White" Content="Confirm" FontSize="25" Margin="200,8,85,7" Width="240" Height="50" Click="buttonViewHistory_Click"/>
                         <Button x:Name="buttonRefresh" BorderBrush="Wheat" BorderThickness="2" Background="#FF06BBBB" Foreground="White" FontSize="25"  Width="124" Height="50" Click="buttonRefresh_Click" Margin="0,8,0,7">
                             <materialDesign:PackIcon Kind="DatabaseRefresh" Width="50" Height="50" Foreground="White"/>
                         </Button>
