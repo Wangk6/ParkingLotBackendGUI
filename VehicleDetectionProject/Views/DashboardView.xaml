@@ -93,7 +93,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="55">
                         <materialDesign:PackIcon Kind="Message" Width="35" Height="Auto" Margin="20,0,20,20" Foreground="#FFFF366D" VerticalAlignment="Stretch"></materialDesign:PackIcon>
-                        <TextBlock x:Name="txtMessage" TextWrapping="Wrap" Margin="20,-5,20,0" Text="{Binding SelectedItem.LotMessage, ElementName=comboBoxParkingLot}" VerticalAlignment="Top" TextAlignment="Left" Foreground="White" FontSize="25" Width="921" Height="50"/>
+                        <TextBlock x:Name="txtMessage" TextWrapping="Wrap" Margin="20,-5,20,0" Text="{Binding SelectedItem.Lot_Message, ElementName=comboBoxParkingLot}" VerticalAlignment="Top" TextAlignment="Left" Foreground="White" FontSize="25" Width="921" Height="50"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
