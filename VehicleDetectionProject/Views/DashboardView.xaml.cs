@@ -162,7 +162,7 @@ namespace VehicleDetectionProject.Views
             vi.setCarDidLeaveDelegate(CarDidLeave);
             vi.setCarProcessingDone(CarProcessingDone);
             vi.setShowWindow(true);
-            vi.setfps(20);
+            vi.setfps(40);
             mediaElementPlayer.MediaOpened += Play;
             mediaElementPlayer.Source = new Uri(videoFeed);
 

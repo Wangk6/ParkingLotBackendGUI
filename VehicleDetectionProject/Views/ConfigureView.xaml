@@ -85,7 +85,7 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Margin="84,10,113,0" ItemsSource="{Binding pk}" Grid.Row="1" Grid.ColumnSpan="2">
+        <ListView x:Name="listViewParkingLot" Margin="84,10,113,0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}">
@@ -117,7 +117,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Name="ParkingLotContainerChild" Width="{Binding ActualWidth, ElementName=ParkingLotContainerMain, Mode=OneWay}" Orientation="Horizontal" Height="55" VerticalAlignment="Top">
-                            <ComboBox x:Name="comboBoxParkingLot"  Width="{Binding ActualWidth, ElementName=ParkingLotContainerChild, Mode=OneWay}" Height="55" VerticalContentAlignment="Center" FontSize="25" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}" ItemsSource="{Binding pk}" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="comboBoxParkingLot"  Width="{Binding ActualWidth, ElementName=ParkingLotContainerChild, Mode=OneWay}" Height="55" VerticalContentAlignment="Center" FontSize="25" SelectionChanged="ParkingLot_SelectionChanged" Template="{DynamicResource ComboBoxControlTemplate1}" VerticalAlignment="Top"/>
                         </StackPanel>
                         <materialDesign:PackIcon x:Name="NoParkingLotSelected" Kind="Error" Width="50" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="-110 0 0 0"/>
                         <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="90" Height="56" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="-80 0 0 0" ToolTip="Connection Failed"/>

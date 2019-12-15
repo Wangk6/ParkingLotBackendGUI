@@ -22,8 +22,6 @@ namespace VehicleDetectionProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<ParkingLot> parkingLots = new List<ParkingLot>();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -39,6 +37,15 @@ namespace VehicleDetectionProject
         {
             btnOpenMenu.Visibility = Visibility.Visible;
             btnCloseMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnHomeMenu_Click(object sender, RoutedEventArgs e)
+        {
+            //Opens new window dialog 
+            //Hide();
+            //MainWindow mainWindow = new MainWindow();
+            //mainWindow.Show();
+            DataContext = new MainWindowVM();
         }
 
         private void DashboardView_Clicked(object sender, RoutedEventArgs e)

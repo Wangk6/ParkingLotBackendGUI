@@ -76,6 +76,9 @@
         <Grid x:Name="LeftGridMenu" Width="200" HorizontalAlignment="Left" Background="#FF222427">
             <StackPanel>
                 <Grid Height="60">
+                    <Button x:Name="btnHomeMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnHomeMenu_Click">
+                        <materialDesign:PackIcon Height="50" Width="40" Kind="Home" Foreground="#00adb5"></materialDesign:PackIcon>
+                    </Button>
                     <Button x:Name="btnCloseMenu" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnCloseMenu_Click">
                         <materialDesign:PackIcon Height="50" Width="40" Kind="ArrowLeft" Foreground="#00adb5"></materialDesign:PackIcon>
                     </Button>

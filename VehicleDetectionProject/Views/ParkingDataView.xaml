@@ -15,7 +15,7 @@
             <RowDefinition Height="491*"/>
         </Grid.RowDefinitions>
         <Grid Margin="244,20,248,22">
-            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" HorizontalAlignment="Center" >
+            <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
                         <TextBlock Text="Parking History" FontWeight="Bold" TextAlignment="Center" Foreground="#00adb5" FontSize="35" HorizontalAlignment="Center" Width="594"/>

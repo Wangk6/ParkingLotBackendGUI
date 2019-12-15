@@ -185,6 +185,8 @@ namespace VehicleDetectionProject.Views
         {
             comboBoxMessage.Visibility = Visibility.Visible;
             textBoxMessage.Visibility = Visibility.Hidden;
+            comboBoxParkingLot.Text = null;
+            comboBoxStatus.Text = null;
             newMsgSelected = false;
             textBoxMessage.Text = null;
         }
