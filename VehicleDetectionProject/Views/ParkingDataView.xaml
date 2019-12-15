@@ -53,16 +53,7 @@
         </ListView>
         <Grid HorizontalAlignment="Left" Height="235" Margin="315,41,0,0" VerticalAlignment="Top" Width="670">
             <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="204,38,312,108" />
-            <fa:ImageAwesome x:Name="RefreshDataIcon" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="204,38,312,108" RenderTransformOrigin="0.5,0.5" >
-                <fa:ImageAwesome.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </fa:ImageAwesome.RenderTransform>
-            </fa:ImageAwesome>
+            <fa:ImageAwesome x:Name="RefreshDataIcon" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="204,38,312,108"/>
         </Grid>
 
         <Grid x:Name="CalendarGrid" Visibility="Hidden" Margin="356,218,224,140" Grid.RowSpan="2">

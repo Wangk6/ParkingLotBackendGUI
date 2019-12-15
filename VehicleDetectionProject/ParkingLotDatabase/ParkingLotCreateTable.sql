@@ -5,7 +5,7 @@ Create table tblParkingLot (
    ,MaxCapacity Int NOT NULL
    ,PermitType VARCHAR(10) NULL
 );
-GO
+
 	--Student Parking Lot
 	INSERT INTO tblParkingLot (LotName, LotNumber, MaxCapacity, PermitType) 
 	VALUES ('Student Lot', '1', 30, 'Student');
@@ -80,7 +80,7 @@ GO
 	VALUES ('Staff Lot', '8', 30, 'Staff');
 
 	INSERT INTO tblParkingLot (LotName, LotNumber, MaxCapacity, PermitType) 
-	VALUES ('Staff Lot', '9A', 30, 'Staff');
+	VALUES ('Student Lot', '9A', 30, 'Staff');
 
 	INSERT INTO tblParkingLot (LotName, LotNumber, MaxCapacity, PermitType) 
 	VALUES ('Staff Lot', '15A', 30, 'Staff');
@@ -93,13 +93,13 @@ GO
 	INSERT INTO tblParkingLot (LotName, MaxCapacity) 
 	VALUES ('Visitor Lot', 30);
 
-	GO
+
 Create table tblParkingLotStatus (
 	ParkingLotStatusID INT NOT NULL IDENTITY PRIMARY KEY
    ,Is_Lot_Open CHAR(1) NOT NULL
    ,Lot_Message VARCHAR(MAX) NULL
 );
-GO
+
 	--Open Lot
 	INSERT INTO tblParkingLotStatus (Is_Lot_Open) 
 	VALUES ('Y');
@@ -115,7 +115,7 @@ GO
 	--Construction
 	INSERT INTO tblParkingLotStatus (Is_Lot_Open, Lot_Message) 
 	VALUES ('N', 'Lot is closed for construction');
-GO
+
 Create table tblLotInfoRecord (
 	LotActivityTime DateTime NOT NULL PRIMARY KEY Default (GETDATE())
    ,CarParked CHAR(1) NOT NULL
@@ -125,7 +125,7 @@ Create table tblLotInfoRecord (
 	--Car Parked in Student Lot 1 Sample
 	--INSERT INTO tblLotInfoRecord (CarParked, ParkingLotID) 
 	--VALUES ('Y' 1);
-GO
+
 
 Create table tblVehicles (
 	VehicleID INT NOT NULL IDENTITY PRIMARY KEY
@@ -133,7 +133,7 @@ Create table tblVehicles (
    ,Model VARCHAR(20) NOT NULL
    ,Year VARCHAR(4) NOT NULL
 );
-GO
+
 	--Gas Vehicle
 	INSERT INTO tblVehicles (Make, Model, Year)
 	VALUES ('Toyota', 'Camry', '2007')
@@ -143,7 +143,7 @@ GO
 	--Electric Vehicle
 	INSERT INTO tblVehicles (Make, Model, Year)
 	VALUES ('Tesla', 'Model 3', '2018')
-GO
+
 Create table tblLotInfo (
 	LotInfoID INT NOT NULL IDENTITY PRIMARY KEY
    ,ParkingLotID INT REFERENCES tblParkingLot(ParkingLotID) NOT NULL
@@ -152,7 +152,7 @@ Create table tblLotInfo (
    ,ParkingLotStatusID INT REFERENCES tblParkingLotStatus(ParkingLotStatusID) NOT NULL
    ,CameraURL VARCHAR(MAX) NULL
 );
-GO
+
 	--Lot Info for all lots
 	INSERT INTO tblLotInfo (ParkingLotID, Num_Of_Cars_Parked, Is_Lot_Full, ParkingLotStatusID)
 	VALUES (1, 0, 'N', 1)
@@ -234,7 +234,7 @@ GO
 	
 	INSERT INTO tblLotInfo (ParkingLotID, Num_Of_Cars_Parked, Is_Lot_Full, ParkingLotStatusID)
 	VALUES (27, 0, 'N', 1)
-GO
+
 Create table tblParkingPermit (
 	ParkingPermitNum CHAR(8) NOT NULL PRIMARY KEY
    ,VehicleID INT REFERENCES tblVehicles(VehicleID) NOT NULL
@@ -263,7 +263,7 @@ Create table tblParkingPermit (
   --Staff Solar Permit
   INSERT INTO tblParkingPermit (ParkingPermitNum, VehicleID, PermitType)
   VALUES('38289106', 3, 'StaffEV')
-  GO
+
 Create table tblUsers (
 	Email CHAR(100) Not Null PRIMARY KEY
 	,UserCategory VARCHAR(12) NOT NULL
@@ -275,7 +275,7 @@ Create table tblUsers (
 	,ParkingPermitNum Char(8) REFERENCES tblParkingPermit(ParkingPermitNum) NULL
 	,FavoriteLot INT REFERENCES tblLotInfo(LotInfoID) NULL
 );
-GO
+
 	--Student User
 	INSERT INTO tblUsers(Email, UserCategory, FirstName, LastName, RamID, Phone, ParkingPermitNum, FavoriteLot)
 	VALUES ('Wangk6@Farmingdale.edu', 'Student', 'Kevin', 'Wang', 'R01748303', '516-555-5555', '38289103', NULL)
@@ -291,7 +291,7 @@ GO
 	--Admin User
 	INSERT INTO tblUsers(Email, UserCategory, FirstName, LastName, Phone, FavoriteLot)
 	VALUES ('adminAcc@Farmingdale.edu', 'Admin', 'Richard', 'Stone','516-556-5655', NULL)
-	GO
+
 --------------------------------------------------------------------------------------------
 Create Trigger trVehicle_Detected 
 ON tblLotInfoRecord
@@ -326,7 +326,7 @@ BEGIN
 	BEGIN
 		IF @Num_Of_Cars_parked > 0 --Do not allow negatives
 		UPDATE tblLotInfo
-		SET Num_Of_Cars_Parked -= 1 --Increment number of cars parked
+		SET Num_Of_Cars_Parked -= 1 --Decrement number of cars parked
 		WHERE ParkingLotID = @ParkingLot
 		PRINT 'Update 2'
 	END
@@ -345,7 +345,7 @@ BEGIN
 		WHERE ParkingLotID = @ParkingLot
 	END
 END
-GO
+
 --------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE spCarParked 
@@ -363,7 +363,7 @@ BEGIN
 INSERT INTO tblLotInfoRecord (CarParked, ParkingLotID)
 VALUES ('Y', @ParkingLotID)
 END
-GO
+
 --------------------------------------------------------------------------------------------
 
 
@@ -382,7 +382,7 @@ BEGIN
 INSERT INTO tblLotInfoRecord (CarParked, ParkingLotID)
 VALUES ('N', @ParkingLotID)
 END
-GO
+
 --------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE spSetParkingLotStatus
@@ -414,7 +414,7 @@ BEGIN
 		VALUES(@Lot_Status, @Message)
 	END
 END
-GO
+
 --------------------------------------------------------------------------------------------
 
 Create View viewParkingLotInfo AS
@@ -424,13 +424,13 @@ Create View viewParkingLotInfo AS
 -- Input Parameters: 
 -- Created By: Kevin Wang
 */ --------------------------------------------------------------------------------------
-Select pl.LotName, pl.LotNumber, li.Num_Of_Cars_Parked, pl.MaxCapacity, li.Is_Lot_Full, ps.Is_Lot_Open, ps.Lot_Message, pl.PermitType, li.CameraURL
+Select pl.LotName, pl.LotNumber, li.Num_Of_Cars_Parked, pl.MaxCapacity, ps.Is_Lot_Open, ps.Lot_Message, pl.PermitType, li.CameraURL
 From tblLotInfo as li 
 Join tblParkingLot as pl 
 ON li.ParkingLotID = pl.ParkingLotID
 Join tblParkingLotStatus as ps
 ON ps.ParkingLotStatusID = li.ParkingLotStatusID
-GO
+
 --------------------------------------------------------------------------------------------
 
 
@@ -441,10 +441,10 @@ Create View viewParkingLotMessages AS
 -- Input Parameters: 
 -- Created By: Kevin Wang
 */ --------------------------------------------------------------------------------------
-SELECT Lot_Message
-FROM dbo.tblParkingLotStatus
+SELECT        Lot_Message
+FROM            dbo.tblParkingLotStatus
 WHERE Lot_Message Is Not Null 
-GO
+
 --------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE spUpdateCameraURL
@@ -460,7 +460,7 @@ AS
 UPDATE tblLotInfo
 SET CameraURL = @CameraURL
 WHERE ParkingLotID = @ParkingLotID
-GO
+
 --------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE spParkingLotStatus
@@ -541,7 +541,7 @@ UPDATE tblParkingLot
 SET PermitType = @PermitType
 WHERE ParkingLotID = @ParkingLotID
 END
-GO
+
 --------------------------------------------------------------------------------------------
 
 
@@ -560,3 +560,43 @@ SET Num_Of_Cars_Parked = @CarsParked
 WHERE LotInfoID = @ParkingLotID
 
 --------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE spGetRecordOnDate
+		@ParkingLotID INT,
+		@Date CHAR(12)
+AS
+BEGIN
+/*	--------------------------------------------------------------------------------------
+-- Object Name: spCarLeft
+-- Purpose: Searched tblLotInfoRecord for the activity time on a certain day
+-- Input Parameters: ParkingLotID (INT), Date (CHAR)
+-- Created By: Kevin Wang
+*/ --------------------------------------------------------------------------------------
+	BEGIN TRY
+		Select lr.LotActivityTime, lr.CarParked, pl.LotName, pl.LotNumber 
+		From tblLotInfoRecord as lr
+		JOIN tblParkingLot as pl 
+		ON lr.ParkingLotID = pl.ParkingLotID
+		Where LotActivityTime >= @Date AND 
+		LotActivityTime <= DATEADD(day, 1, @Date)
+		RETURN
+	END TRY
+	BEGIN CATCH
+		RETURN 
+	END CATCH
+END
+
+--------------------------------------------------------------------------------------------
+
+	
+CREATE VIEW viewLotRecords
+AS
+/*	--------------------------------------------------------------------------------------
+-- Object Name: viewLotRecords
+-- Purpose: Obtain all lot records
+-- Created By: Kevin Wang
+*/ --------------------------------------------------------------------------------------
+	Select lr.LotActivityTime, lr.CarParked, pl.LotName, pl.LotNumber
+	From tblLotInfoRecord as lr 
+	JOIN tblParkingLot as pl 
+	ON lr.ParkingLotID = pl.ParkingLotID
