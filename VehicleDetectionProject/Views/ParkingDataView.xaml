@@ -10,7 +10,11 @@
              Background="#222831"
              d:DesignHeight="860" d:DesignWidth="1250" Loaded="ParkingDataView_Loaded">
     <Grid>
-        <Grid Margin="244,20,248,494">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="369*"/>
+            <RowDefinition Height="491*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="244,20,248,22">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15" HorizontalAlignment="Center" >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Height="55" HorizontalAlignment="Center">
@@ -20,6 +24,7 @@
                         <materialDesign:PackIcon Kind="Parking" Width="35" Height="35" Margin="10 0 10 0" VerticalAlignment="Center" Foreground="#FF2085FF"></materialDesign:PackIcon>
                         <TextBlock Text="Parking Lot" FontWeight="Bold" VerticalAlignment="Center" Foreground="#00fff5" FontSize="25" Margin="0,0, 20, 0"/>
                         <ComboBox x:Name="comboBoxParkingLot" Height="45" FontSize="25" VerticalContentAlignment="Center" Width="304"  Template="{DynamicResource ComboBoxControlTemplate1}" Margin="0,15"/>
+                        <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Visible" Margin="-80 0 0 0" ToolTip="Connection Failed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="75" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="DateRange" Height="35" Width="35" Margin="10 20 10 0" Foreground="White"/>
@@ -36,14 +41,13 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Margin="262,395,265,34">
+        <ListView x:Name="listViewParkingLot" Margin="262,6,265,34" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Activity Time" Width="Auto" DisplayMemberBinding="{Binding LotActivityTime}"/>
                     <GridViewColumn Header="Car Parked" Width="Auto" DisplayMemberBinding="{Binding CarParked}"/>
                     <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding LotName}"/>
                     <GridViewColumn Header="Number" Width="Auto" DisplayMemberBinding="{Binding LotNumber}"/>
-
                 </GridView>
             </ListView.View>
         </ListView>
@@ -59,10 +63,9 @@
                     </TransformGroup>
                 </fa:ImageAwesome.RenderTransform>
             </fa:ImageAwesome>
-            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="430,48,0,137" ToolTip="Connection Failed"/>
         </Grid>
 
-        <Grid x:Name="CalendarGrid" Visibility="Hidden" Margin="356,218,224,140">
+        <Grid x:Name="CalendarGrid" Visibility="Hidden" Margin="356,218,224,140" Grid.RowSpan="2">
             <Viewbox Margin="0,0,10,0" Height="352" VerticalAlignment="Top">
                 <Calendar x:Name="CalendarView" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
 

@@ -11,9 +11,10 @@
              d:DesignHeight="860" d:DesignWidth="1250" Loaded="SourceView_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="163*"/>
+            <RowDefinition Height="267*"/>
         </Grid.RowDefinitions>
-        <Grid Margin="166,20,137,520">
+        <Grid Margin="166,20,137,4">
             <Border Background="#393e46" BorderThickness="1,1,1,1" CornerRadius="15">
                 <StackPanel Width="Auto">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="55" Width="Auto">
@@ -23,6 +24,7 @@
                         <materialDesign:PackIcon Kind="Parking" Width="35" Height="35" Margin="10 20 0 0"  Foreground="#FF2085FF"></materialDesign:PackIcon>
                         <TextBlock Text="Parking Lot"  FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 20 0" Foreground="#00fff5" FontSize="25"/>
                         <ComboBox x:Name="comboBoxParkingLot" Height="45" FontSize="25" VerticalContentAlignment="Center" Width="650" Template="{DynamicResource ComboBoxControlTemplate1}"/>
+                        <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Margin="-80 0 0 0" Visibility="Visible" ToolTip="Connection Failed"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="75" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="Link" Height="35" Width="35" Margin="20 20 10 0" Foreground="White"/>
@@ -39,7 +41,7 @@
             </Border>
         </Grid>
 
-        <ListView x:Name="listViewParkingLot" Margin="166,345,137,136">
+        <ListView x:Name="listViewParkingLot" Margin="166,29,137,108" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}"/>
@@ -51,7 +53,6 @@
         <Grid HorizontalAlignment="Left" Height="235" Margin="188,41,0,0" VerticalAlignment="Top" Width="925">
             <fa:ImageAwesome x:Name="LoadingData" Icon="Gear" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="372,34,400,112" />
             <fa:ImageAwesome x:Name="RefreshDataIcon" Icon="Refresh" Spin="True" Visibility="Hidden" Foreground="DarkGray" SpinDuration="2" Margin="372,34,400,112" />
-            <materialDesign:PackIcon x:Name="NoConnection" Kind="Alert" Width="76" Height="50" Foreground="Red" VerticalAlignment="Center" Visibility="Hidden" Margin="178,38,0,147" ToolTip="Connection Failed"/>
         </Grid>
     </Grid>
 </UserControl>

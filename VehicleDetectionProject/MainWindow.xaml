@@ -8,7 +8,7 @@
         xmlns:viewmodels="clr-namespace:VehicleDetectionProject.ViewModel"
         xmlns:views="clr-namespace:VehicleDetectionProject.Views"
         Background="#222831"
-        Title="Vehicle Detection Console"
+        Title="Raedam Console - Made By Kevin Wang Github.com/Wangk6"
         mc:Ignorable="d" Height="860" Width="1400" WindowStartupLocation="CenterScreen" Icon="Assets/cctv.ico">
     <Window.Resources>
         <DataTemplate x:Name="dashboardViewTemplate" DataType="{x:Type viewmodels:DashboardViewModel}">
