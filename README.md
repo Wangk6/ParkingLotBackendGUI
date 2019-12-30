@@ -1,5 +1,10 @@
 # Raedam-SmartVehicleProgram
 Backend for a machine learning parking lot application <br>
+## Instructions:
+  Confirm all Nugets are properly installed<br>
+  Build DLL FarmingdaleSmartParking2 first<br>
+  Build main GUI<br><br>
+  <i>Note: If you're using lower than Windows 10, change MaterialDesignThemes to proper version based on your OS<i>
 
 ## Components: <br>
 
@@ -16,6 +21,7 @@ Backend for a machine learning parking lot application <br>
 ### Libraries:<br>
   EmguCV - Computer Vision Wrapper Language <br>
   Dapper - .NET Framework for Object Oriented Mapping<br>
+  MaterialDesignThemes - Used to customize GUI<br>
 
 ### Photos: <br>
 
