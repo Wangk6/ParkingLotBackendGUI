@@ -4,26 +4,9 @@ Backend for a machine learning parking lot application <br>
   Confirm all Nugets are properly installed<br>
   Build DLL FarmingdaleSmartParking2 first<br>
   Build main GUI<br><br>
-  <i>Note: If you're using lower than Windows 10, change MaterialDesignThemes to proper version based on your OS<i>
+  <i>Note: If you're using lower than Windows 10, change MaterialDesignThemes to proper version based on your OS</i>
 
-## Components: <br>
-
-### Hardware:<br>
-  Raspberry Pi Zero W - Computer for camera<br>
-  Raspberry Pi Cam - Video Feed<br>
-
-### Software:<br>
-  C# - Base Backend <br>
-  WPF (XAML) - GUI<br>
-  SQL Server - Database<br>
-  Microsoft Azure - Database host<br>
- 
-### Libraries:<br>
-  EmguCV - Computer Vision Wrapper Language <br>
-  Dapper - .NET Framework for Object Oriented Mapping<br>
-  MaterialDesignThemes - Used to customize GUI<br>
-
-### Photos: <br>
+## Photos: <br>
 
   #### Home Page: <br>
   ![Image of Home Page](https://i.gyazo.com/b75afdb09c88556c9b72ab6eb3e3c0c5.png) <br>
@@ -42,3 +25,21 @@ Backend for a machine learning parking lot application <br>
     
   #### History Page: <br>
   ![Image of Configure Page](https://i.gyazo.com/143aee0f24120c6fc62be6c1e646ef9e.png) <br>
+
+
+## Components: <br>
+
+### Hardware:<br>
+  Raspberry Pi Zero W - Computer for camera<br>
+  Raspberry Pi Cam - Video Feed<br>
+
+### Software:<br>
+  C# - Base Backend <br>
+  WPF (XAML) - GUI<br>
+  SQL Server - Database<br>
+  Microsoft Azure - Database host<br>
+ 
+### Libraries:<br>
+  EmguCV - Computer Vision Wrapper Language <br>
+  Dapper - .NET Framework for Object Oriented Mapping<br>
+  MaterialDesignThemes - Used to customize GUI<br>
