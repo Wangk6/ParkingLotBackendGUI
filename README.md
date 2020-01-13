@@ -25,6 +25,8 @@ Backend for a machine learning parking lot application <br>
     
   #### History Page: <br>
   ![Image of Configure Page](https://i.gyazo.com/143aee0f24120c6fc62be6c1e646ef9e.png) <br>
+  
+  ![Image of Configure Page](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1#G1ZdSBtB-fvcZ1NG7JG5gtPRhzDyfa_MjF)
 
 
 ## Components: <br>
