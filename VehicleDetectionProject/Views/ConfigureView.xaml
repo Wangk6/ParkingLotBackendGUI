@@ -88,19 +88,19 @@
         <ListView x:Name="listViewParkingLot" Margin="84,10,113,0" Grid.Row="1" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Parking Lot Name" Width="Auto" DisplayMemberBinding="{Binding LotName}">
+                    <GridViewColumn Header="Lot Name |" Width="Auto" DisplayMemberBinding="{Binding LotName}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Parking Lot Number" Width="Auto" DisplayMemberBinding="{Binding LotNumber}">
+                    <GridViewColumn Header="Lot Number |" Width="Auto" DisplayMemberBinding="{Binding LotNumber}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Open" Width="Auto" DisplayMemberBinding="{Binding Is_Lot_Open}">
+                    <GridViewColumn Header="Open |" Width="Auto" DisplayMemberBinding="{Binding Is_Lot_Open}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Message" Width="Auto" DisplayMemberBinding="{Binding Lot_Message}">
+                    <GridViewColumn Header="Message |" Width="Auto" DisplayMemberBinding="{Binding Lot_Message}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Cars Parked" Width="Auto" DisplayMemberBinding="{Binding Num_Of_Cars_Parked}">
+                    <GridViewColumn Header="Cars Parked |" Width="Auto" DisplayMemberBinding="{Binding Num_Of_Cars_Parked}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Is Lot Full" Width="Auto" DisplayMemberBinding="{Binding Is_lot_Full}">
+                    <GridViewColumn Header="Is Lot Full |" Width="Auto" DisplayMemberBinding="{Binding Is_Lot_Full}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Max Capacity" Width="Auto" DisplayMemberBinding="{Binding MaxCapacity}">
+                    <GridViewColumn Header="Max Capacity |" Width="Auto" DisplayMemberBinding="{Binding MaxCapacity}">
                     </GridViewColumn>
                     <GridViewColumn Header="Permit Type" Width="Auto" DisplayMemberBinding="{Binding PermitType}">
                     </GridViewColumn>

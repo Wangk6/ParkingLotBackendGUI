@@ -22,7 +22,7 @@ namespace VehicleDetectionProject.Database
 
         public int Num_Of_Cars_Parked { get; set; }
 
-        public char Is_lot_Full { get; set; }
+        public char Is_Lot_Full { get; set; }
 
         public int MaxCapacity { get; set; }
 

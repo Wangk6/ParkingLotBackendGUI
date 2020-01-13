@@ -424,7 +424,7 @@ Create View viewParkingLotInfo AS
 -- Input Parameters: 
 -- Created By: Kevin Wang
 */ --------------------------------------------------------------------------------------
-Select pl.LotName, pl.LotNumber, li.Num_Of_Cars_Parked, pl.MaxCapacity, ps.Is_Lot_Open, ps.Lot_Message, pl.PermitType, li.CameraURL
+Select pl.LotName, pl.LotNumber, li.Is_Lot_Full, li.Num_Of_Cars_Parked, pl.MaxCapacity, ps.Is_Lot_Open, ps.Lot_Message, pl.PermitType, li.CameraURL
 From tblLotInfo as li 
 Join tblParkingLot as pl 
 ON li.ParkingLotID = pl.ParkingLotID
