@@ -31,12 +31,15 @@ namespace VehicleDetectionProject
         {
             btnOpenMenu.Visibility = Visibility.Collapsed;
             btnCloseMenu.Visibility = Visibility.Visible;
+            btnHomeMenu.Visibility = Visibility.Visible;
         }
 
         private void btnCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             btnOpenMenu.Visibility = Visibility.Visible;
             btnCloseMenu.Visibility = Visibility.Collapsed;
+            btnHomeMenu.Visibility = Visibility.Collapsed;
+
         }
 
         private void btnHomeMenu_Click(object sender, RoutedEventArgs e)
