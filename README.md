@@ -21,12 +21,13 @@ Backend for a machine learning parking lot application <br>
   ![Image of Configure Page](https://i.gyazo.com/5ae499bc13dff0cb621a7c469faec86a.png) <br>
   
   #### Source Page: <br>
-  ![Image of Configure Page](https://i.gyazo.com/114a70a9d8a75a10e3c1c034656a3cbf.png) <br>
+  ![Image of Source Page](https://i.gyazo.com/114a70a9d8a75a10e3c1c034656a3cbf.png) <br>
     
   #### History Page: <br>
-  ![Image of Configure Page](https://i.gyazo.com/143aee0f24120c6fc62be6c1e646ef9e.png) <br>
+  ![Image of History Page](https://i.gyazo.com/143aee0f24120c6fc62be6c1e646ef9e.png) <br>
   
-  ![Image of Configure Page](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1#G1ZdSBtB-fvcZ1NG7JG5gtPRhzDyfa_MjF)
+  #### Entity-Relationship Diagram: <br>
+  ![Image of Entity-Relationship Diagram](https://drive.google.com/open?id=1xd0RadNIxGGARzT8LS8tnrFZD1A_8LtD)<br>
 
 
 ## Components: <br>
