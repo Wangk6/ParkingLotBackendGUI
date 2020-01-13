@@ -27,7 +27,7 @@ Backend for a machine learning parking lot application <br>
   ![Image of History Page](https://i.gyazo.com/143aee0f24120c6fc62be6c1e646ef9e.png) <br>
   
   #### Entity-Relationship Diagram: <br>
-  ![Image of Entity-Relationship Diagram](https://drive.google.com/open?id=1xd0RadNIxGGARzT8LS8tnrFZD1A_8LtD)<br>
+  ![Image of Entity-Relationship Diagram](https://i.imgur.com/9Q8mHyQ.png)<br>
 
 
 ## Components: <br>
