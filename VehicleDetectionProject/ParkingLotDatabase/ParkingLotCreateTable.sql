@@ -578,7 +578,7 @@ BEGIN
 		JOIN tblParkingLot as pl 
 		ON lr.ParkingLotID = pl.ParkingLotID
 		Where LotActivityTime >= @Date AND 
-		LotActivityTime <= DATEADD(day, 1, @Date)
+		LotActivityTime <= DATEADD(day, 1, @Date) AND pl.ParkingLotID = @ParkingLotID
 		RETURN
 	END TRY
 	BEGIN CATCH

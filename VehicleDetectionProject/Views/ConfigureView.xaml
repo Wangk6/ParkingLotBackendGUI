@@ -94,15 +94,15 @@
                     </GridViewColumn>
                     <GridViewColumn Header="Open |" Width="Auto" DisplayMemberBinding="{Binding Is_Lot_Open}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Message |" Width="Auto" DisplayMemberBinding="{Binding Lot_Message}">
-                    </GridViewColumn>
                     <GridViewColumn Header="Cars Parked |" Width="Auto" DisplayMemberBinding="{Binding Num_Of_Cars_Parked}">
                     </GridViewColumn>
                     <GridViewColumn Header="Is Lot Full |" Width="Auto" DisplayMemberBinding="{Binding Is_Lot_Full}">
                     </GridViewColumn>
                     <GridViewColumn Header="Max Capacity |" Width="Auto" DisplayMemberBinding="{Binding MaxCapacity}">
                     </GridViewColumn>
-                    <GridViewColumn Header="Permit Type" Width="Auto" DisplayMemberBinding="{Binding PermitType}">
+                    <GridViewColumn Header="Permit Type |" Width="Auto" DisplayMemberBinding="{Binding PermitType}">
+                    </GridViewColumn>
+                    <GridViewColumn Header="Message" Width="Auto" DisplayMemberBinding="{Binding Lot_Message}">
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

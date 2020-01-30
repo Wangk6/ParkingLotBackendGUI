@@ -162,7 +162,7 @@ namespace VehicleDetectionProject.Views
             vi.setCarDidLeaveDelegate(CarDidLeave);
             vi.setCarProcessingDone(CarProcessingDone);
             vi.setShowWindow(true);
-            vi.setfps(40);
+            vi.setfps(80);
             mediaElementPlayer.MediaOpened += Play;
             mediaElementPlayer.Source = new Uri(videoFeed);
 
@@ -195,9 +195,12 @@ namespace VehicleDetectionProject.Views
                 pk[index].Num_Of_Cars_Parked = myCount;
                 Console.WriteLine("Parked: " + myCount);
                 txtParkingLotCurrentParked.Text = myCount.ToString();
-                myCount = int.Parse(txtParkingLotCurrentAvailable.Text) - 1;
-                txtParkingLotCurrentAvailable.Text = myCount.ToString();
-                Console.WriteLine("Available: " + myCount + "\n\n");
+                if (!txtParkingLotCurrentAvailable.Text.Equals("0"))
+                {
+                    myCount = int.Parse(txtParkingLotCurrentAvailable.Text) - 1;
+                    txtParkingLotCurrentAvailable.Text = myCount.ToString();
+                }
+                //Console.WriteLine("Available: " + myCount + "\n\n");
             }
         }
         public void CarLeft()

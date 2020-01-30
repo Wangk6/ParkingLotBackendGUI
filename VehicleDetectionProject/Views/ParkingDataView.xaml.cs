@@ -54,11 +54,30 @@ namespace VehicleDetectionProject.Views
             {
                 try
                 {
-                    int index = comboBoxParkingLot.SelectedIndex + 1;
-                    string date = textBoxDate.Text.Trim();
-                    //Update parking lots camera url
-                    la = svm.GetLotRecordDate(index, date);
-                    RefreshDataASync();
+                    if(textBoxDate.Text == "") //Date is empty
+                    {
+                        int index = comboBoxParkingLot.SelectedIndex + 1;
+                        string date = textBoxDate.Text.Trim();
+                        //Update parking lots camera url
+                        la = svm.GetLotRecordDate(index, date);
+                        RefreshDataASync();
+                    }
+                    else if(comboBoxParkingLot.Text == "")
+                    {
+                        string date = textBoxDate.Text.Trim();
+                        //Update parking lots camera url
+                        la = svm.GetLotRecordDate(-1, date);
+                        textBoxDate.Clear();
+                        RefreshDataASync();
+                    }else if(textBoxDate.Text != "" && comboBoxParkingLot.Text != "")
+                    {
+                        int index = comboBoxParkingLot.SelectedIndex + 1;
+                        string date = textBoxDate.Text.Trim();
+                        //Update parking lots camera url
+                        la = svm.GetLotRecordDate(index, date);
+                        textBoxDate.Clear();
+                        RefreshDataASync();
+                    }
                 }
                 catch (ArgumentOutOfRangeException ex) { };
             }
@@ -104,7 +123,9 @@ namespace VehicleDetectionProject.Views
          */
         private void buttonRefresh_Click(object sender, RoutedEventArgs e)
         {
-            RefreshDataASync();
+            comboBoxParkingLot.Text = "";
+            textBoxDate.Text = "";
+            FillDataAsync();
         }
         #endregion
 
@@ -172,7 +193,7 @@ namespace VehicleDetectionProject.Views
         {
             NoConnection.Visibility = Visibility.Hidden;
             RefreshDataIcon.Visibility = Visibility.Visible;
-            svm = new ParkingDataViewModel();
+            //svm = new ParkingDataViewModel();
 
             bool status = await Task.Run(() => svm.IsServerConnected());
 
